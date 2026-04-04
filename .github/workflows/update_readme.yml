@@ -31,9 +31,15 @@ jobs:
         
     - name: Run update script
       run: |
-        echo "Current directory: $(pwd)"
-        echo "Contents: $(ls -la)"
         python scripts/update_papers.py
+
+    - name: Validate generated README
+      run: |
+        python scripts/validate_readme.py
+
+    - name: Run tests
+      run: |
+        python -m unittest discover -s tests -p 'test_*.py'
         
     - name: Check for changes
       id: verify-changed-files

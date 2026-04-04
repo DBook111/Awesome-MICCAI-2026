@@ -42,8 +42,10 @@ body:
       description: What kind of error did you find? (Select all that apply)
       options:
         - label: Broken code repository link
+        - label: Malformed code repository link
         - label: Wrong category
         - label: Not a MICCAI 2026 paper
+        - label: Stale paper remains in list
         - label: Duplicate entry
         - label: Incorrect paper information (title, link, etc.)
         - label: Other
@@ -65,6 +67,15 @@ body:
       label: Additional Notes
       description: Any other details that would help us fix this issue
       placeholder: "Provide context, evidence, or suggestions..."
+    validations:
+      required: false
+
+  - type: input
+    id: evidence-link
+    attributes:
+      label: Evidence Link (required for MICCAI-related disputes)
+      description: URL supporting your report (arXiv comment, proceedings, or repository page)
+      placeholder: "https://..."
     validations:
       required: false
 
