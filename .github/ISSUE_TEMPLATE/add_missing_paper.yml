@@ -9,7 +9,7 @@ body:
         Thanks for helping complete our list! Please provide details about the missing paper.
         
         **Requirements:**
-        - Paper must be accepted to MICCAI 2026
+        - Paper must clearly indicate MICCAI 2026 association
         - Code repository must be publicly accessible
 
   - type: input
@@ -45,8 +45,17 @@ body:
       label: MICCAI 2026 Confirmation
       description: Please confirm this paper is from MICCAI 2026
       options:
-        - label: I confirm this paper is from MICCAI 2026 (mentioned in paper, arXiv comments, or official proceedings)
+        - label: I confirm this paper is tied to MICCAI 2026 (arXiv comment, official proceedings, or workshop page)
           required: true
+
+  - type: input
+    id: evidence-link
+    attributes:
+      label: Evidence Link
+      description: URL proving MICCAI 2026 association (arXiv comment, proceedings page, workshop page)
+      placeholder: "https://..."
+    validations:
+      required: true
 
   - type: checkboxes
     id: public-repo
