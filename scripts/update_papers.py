@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-"""Update the Awesome MICCAI 2026 README from arXiv data.
+"""Update the Awesome MICCAI README from arXiv data.
 
 Pipeline stages:
-1) Discover: fetch candidate MICCAI 2026 papers from arXiv
+1) Discover: fetch candidate MICCAI papers from arXiv
 2) Normalize: clean and canonicalize repository links
 3) Validate: reject malformed/unsupported records
-4) Categorize: assign one-or-more categories via weighted rules
-5) Render: deterministically regenerate README category blocks
+4) Categorize: multi-label category + confidence assignment
+5) Render: deterministically regenerate README category blocks and coverage report
 """
 
 from __future__ import annotations
 
+import argparse
 import re
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Pattern, Sequence, Tuple
 from urllib.parse import urlparse
 
 import arxiv
@@ -40,6 +41,8 @@ CATEGORY_MARKERS = {
 }
 
 ALLOWED_CODE_HOSTS = {"github.com", "gitlab.com", "huggingface.co"}
+TRACK_OPTIONS = {"main", "workshops", "challenges", "all"}
+CONFERENCE_SCOPE_OPTIONS = {"miccai-2026", "miccai-all-years"}
 
 # (regex pattern, weight)
 CATEGORY_RULES = {
@@ -92,6 +95,10 @@ CATEGORY_RULES = {
         (r"\bflow matching\b", 2),
     ],
 }
+CATEGORY_COMPILED_RULES: Dict[str, List[Tuple[Pattern[str], int]]] = {
+    category: [(re.compile(pattern), weight) for pattern, weight in rules]
+    for category, rules in CATEGORY_RULES.items()
+}
 
 CATEGORY_THRESHOLDS = {
     "Segmentation": 2,
@@ -108,6 +115,27 @@ REPO_URL_PATTERN = re.compile(
 )
 
 ARXIV_ABS_PATTERN = re.compile(r"^https?://arxiv\.org/abs/\d{4}\.\d{4,5}(?:v\d+)?$")
+MICCAI_2026_PATTERN = re.compile(r"\bmiccai\s*[-_ ]?\s*2026\b|\bmiccai(?:'26|26)\b", re.IGNORECASE)
+MICCAI_PATTERN = re.compile(r"\bmiccai\b", re.IGNORECASE)
+MICCAI_2025_PATTERN = re.compile(r"\bmiccai\s*[-_ ]?\s*2025\b|\bmiccai(?:'25|25)\b", re.IGNORECASE)
+MICCAI_EXPLICIT_YEAR_PATTERN = re.compile(
+    r"\bmiccai\s*[-_ ]?(?P<year>20\d{2}|'?\d{2})\b", re.IGNORECASE
+)
+MICCAI_SUBMISSION_PATTERN = re.compile(
+    r"\b(submitted|under review|accepted|camera[- ]ready)\b.{0,32}\bmiccai\b",
+    re.IGNORECASE,
+)
+
+TRACK_PATTERNS = {
+    "workshops": re.compile(r"\bworkshop\b", re.IGNORECASE),
+    "challenges": re.compile(r"\bchallenge\b", re.IGNORECASE),
+}
+
+SCOPE_LINE_PATTERN = re.compile(r"\*\*Conference Scope\*\*: [^\n]*")
+MODE_LINE_PATTERN = re.compile(r"\*\*Discovery Mode\*\*: [^\n]*")
+COVERAGE_BLOCK_PATTERN = re.compile(
+    r"<!-- BEGIN COVERAGE_REPORT -->(?P<body>.*?)<!-- END COVERAGE_REPORT -->", re.S
+)
 
 
 def _normalize_host(host: str) -> str:
@@ -117,7 +145,6 @@ def _normalize_host(host: str) -> str:
 
 def _clean_url_candidate(url: str) -> str:
     url = url.strip()
-    # Handle malformed concatenations like ...repo}{https://...
     url = url.split("}{", 1)[0]
     url = re.sub(r"[.,;:!?\]\}>\"'\s]+$", "", url)
     return url
@@ -135,7 +162,6 @@ def _canonical_repo_key(parsed_path: str, host: str) -> Optional[Tuple[str, str,
     if owner in blocked_owner_paths:
         return None
 
-    # Normalize trailing .git in repository segment.
     repo = repo[:-4] if repo.endswith(".git") else repo
     if not owner or not repo:
         return None
@@ -183,43 +209,133 @@ def get_repository_links(text: str) -> List[str]:
     return deduped
 
 
-def categorize_paper(title: str, abstract: str) -> List[str]:
+def score_categories(title: str, abstract: str) -> Dict[str, int]:
     title_l = title.lower()
     abstract_l = abstract.lower()
 
-    categories: List[str] = []
-    for category, rules in CATEGORY_RULES.items():
+    scores: Dict[str, int] = {}
+    for category, rules in CATEGORY_COMPILED_RULES.items():
         score = 0
         for pattern, weight in rules:
-            title_hit = re.search(pattern, title_l)
-            abstract_hit = re.search(pattern, abstract_l)
+            title_hit = pattern.search(title_l)
+            abstract_hit = pattern.search(abstract_l)
             if title_hit:
                 score += weight * 2
             elif abstract_hit:
                 score += weight
+        scores[category] = score
+    return scores
 
-        if score >= CATEGORY_THRESHOLDS.get(category, 2):
-            categories.append(category)
 
+def categorize_paper(title: str, abstract: str, scores: Optional[Dict[str, int]] = None) -> List[str]:
+    if scores is None:
+        scores = score_categories(title, abstract)
+    categories = [
+        category
+        for category in CATEGORY_ORDER
+        if category in scores and scores[category] >= CATEGORY_THRESHOLDS.get(category, 2)
+    ]
     if not categories:
         categories = ["General"]
-
-    # Stable ordering keeps output deterministic across runs.
-    categories.sort(key=lambda c: CATEGORY_ORDER.index(c))
     return categories
 
 
-def discover_papers() -> Tuple[List[Dict[str, Any]], Dict[str, int], List[str]]:
-    """Discover MICCAI 2026 papers from arXiv that contain public code links."""
-    print("[discover] Searching arXiv for MICCAI 2026 papers")
+def get_category_confidence(category_scores: Dict[str, int], categories: Sequence[str]) -> Dict[str, str]:
+    confidence: Dict[str, str] = {}
+    for category in categories:
+        if category == "General":
+            confidence[category] = "medium"
+            continue
+        score = category_scores.get(category, 0)
+        confidence[category] = "high" if score >= 4 else "medium"
+    return confidence
 
-    queries = [
-        'ti:"MICCAI 2026"',
-        'abs:"MICCAI 2026"',
-        'co:"MICCAI 2026"',
-    ]
 
-    client = arxiv.Client(page_size=50, delay_seconds=3, num_retries=3)
+def _extract_arxiv_year(arxiv_url: str) -> Optional[int]:
+    match = re.search(r"/abs/(\d{2})\d{2}\.\d{4,5}", arxiv_url)
+    if match:
+        return int(match.group(1))
+    # Legacy arXiv IDs such as /abs/cs/0601001
+    legacy_match = re.search(r"/abs/[a-z\-]+/(\d{2})\d{4}", arxiv_url, re.IGNORECASE)
+    if legacy_match:
+        return int(legacy_match.group(1))
+    return None
+
+
+def _extract_explicit_miccai_years(text: str) -> List[int]:
+    years: List[int] = []
+    for match in MICCAI_EXPLICIT_YEAR_PATTERN.finditer(text):
+        value = match.group("year").replace("'", "")
+        year = int(value)
+        if year < 100:
+            year += 2000
+        years.append(year)
+    return years
+
+
+def _infer_track(text: str) -> str:
+    if TRACK_PATTERNS["challenges"].search(text):
+        return "challenges"
+    if TRACK_PATTERNS["workshops"].search(text):
+        return "workshops"
+    return "main"
+
+
+def track_matches(requested_track: str, inferred_track: str) -> bool:
+    if requested_track == "all":
+        return True
+    return requested_track == inferred_track
+
+
+def is_target_miccai_paper(text: str, arxiv_url: str, mode: str, conference_scope: str) -> bool:
+    if conference_scope == "miccai-2026":
+        explicit_years = _extract_explicit_miccai_years(text)
+        if 2026 in explicit_years:
+            return True
+        if explicit_years and 2026 not in explicit_years:
+            return False
+
+        if MICCAI_2026_PATTERN.search(text):
+            return True
+        if mode == "strict":
+            return False
+        if not MICCAI_PATTERN.search(text):
+            return False
+        if MICCAI_2025_PATTERN.search(text):
+            return False
+        year = _extract_arxiv_year(arxiv_url)
+        if year == 26:
+            return True
+        return bool(MICCAI_SUBMISSION_PATTERN.search(text))
+
+    # miccai-all-years
+    if not MICCAI_PATTERN.search(text):
+        return False
+    if mode == "strict":
+        return bool(re.search(r"\bmiccai\s*[-_ ]?\s*20\d{2}\b", text, re.IGNORECASE))
+    return True
+
+
+def build_queries(mode: str, conference_scope: str) -> List[str]:
+    if conference_scope == "miccai-2026":
+        queries = ['ti:"MICCAI 2026"', 'abs:"MICCAI 2026"', 'co:"MICCAI 2026"']
+        if mode == "broad":
+            queries.extend(['ti:"MICCAI"', 'abs:"MICCAI"', 'co:"MICCAI"'])
+        return queries
+
+    # miccai-all-years
+    return ['ti:"MICCAI"', 'abs:"MICCAI"', 'co:"MICCAI"']
+
+
+def discover_papers(mode: str, conference_scope: str, tracks: str) -> Tuple[List[Dict[str, Any]], Dict[str, int], List[str]]:
+    print(
+        "[discover] Searching arXiv "
+        f"(mode={mode}, conference_scope={conference_scope}, tracks={tracks})"
+    )
+
+    queries = build_queries(mode, conference_scope)
+
+    client = arxiv.Client(page_size=100, delay_seconds=3, num_retries=3)
     seen_arxiv = set()
     papers: List[Dict[str, Any]] = []
     failed_queries: List[str] = []
@@ -227,6 +343,8 @@ def discover_papers() -> Tuple[List[Dict[str, Any]], Dict[str, int], List[str]]:
         "fetched_records": 0,
         "unique_arxiv_records": 0,
         "without_code_links": 0,
+        "filtered_non_target": 0,
+        "filtered_track": 0,
         "accepted_records": 0,
     }
 
@@ -235,7 +353,7 @@ def discover_papers() -> Tuple[List[Dict[str, Any]], Dict[str, int], List[str]]:
         try:
             search = arxiv.Search(
                 query=query,
-                max_results=100,
+                max_results=5000 if conference_scope == "miccai-all-years" else 300,
                 sort_by=arxiv.SortCriterion.SubmittedDate,
                 sort_order=arxiv.SortOrder.Descending,
             )
@@ -253,9 +371,17 @@ def discover_papers() -> Tuple[List[Dict[str, Any]], Dict[str, int], List[str]]:
             seen_arxiv.add(result.entry_id)
             stats["unique_arxiv_records"] += 1
 
-            text_for_links = f"{result.summary}\n{getattr(result, 'comment', '') or ''}"
-            links = get_repository_links(text_for_links)
+            text = f"{result.title}\n{result.summary}\n{getattr(result, 'comment', '') or ''}"
+            if not is_target_miccai_paper(text, result.entry_id, mode, conference_scope):
+                stats["filtered_non_target"] += 1
+                continue
 
+            inferred_track = _infer_track(text)
+            if not track_matches(tracks, inferred_track):
+                stats["filtered_track"] += 1
+                continue
+
+            links = get_repository_links(text)
             if not links:
                 stats["without_code_links"] += 1
                 continue
@@ -267,6 +393,7 @@ def discover_papers() -> Tuple[List[Dict[str, Any]], Dict[str, int], List[str]]:
                     "repo_links": links,
                     "published": result.published,
                     "summary": result.summary,
+                    "track": inferred_track,
                 }
             )
             stats["accepted_records"] += 1
@@ -274,14 +401,14 @@ def discover_papers() -> Tuple[List[Dict[str, Any]], Dict[str, int], List[str]]:
     return papers, stats, failed_queries
 
 
-def validate_papers_data(papers: List[Dict[str, Any]]) -> Tuple[int, int]:
-    """Validate normalized papers and deduplicate by (arxiv, repo)."""
+def validate_papers_data(papers: List[Dict[str, Any]]) -> Tuple[int, int, int]:
     print("[validate] Validating normalized paper records")
 
     deduped_papers: List[Dict[str, Any]] = []
     seen_pairs = set()
     removed_duplicates = 0
     rejected_records = 0
+    uncertain_records = 0
 
     for paper in papers:
         arxiv_url = paper.get("arxiv_url", "")
@@ -308,7 +435,7 @@ def validate_papers_data(papers: List[Dict[str, Any]]) -> Tuple[int, int]:
             rejected_records += 1
             continue
 
-        pair_key = (arxiv_url.lower(), tuple(cleaned_links))
+        pair_key = arxiv_url.lower()
         if pair_key in seen_pairs:
             removed_duplicates += 1
             continue
@@ -316,20 +443,32 @@ def validate_papers_data(papers: List[Dict[str, Any]]) -> Tuple[int, int]:
         seen_pairs.add(pair_key)
         normalized_paper = dict(paper)
         normalized_paper["repo_links"] = cleaned_links
-        normalized_paper["categories"] = categorize_paper(title, paper.get("summary", ""))
+
+        scores = score_categories(title, paper.get("summary", ""))
+        categories = categorize_paper(title, paper.get("summary", ""), scores=scores)
+        normalized_paper["category_scores"] = scores
+        normalized_paper["categories"] = categories
+        normalized_paper["confidence"] = get_category_confidence(scores, categories)
+        normalized_paper["is_uncertain"] = (
+            categories == ["General"] and max(scores.values()) < 2 if scores else True
+        )
+        if normalized_paper["is_uncertain"]:
+            uncertain_records += 1
+
         deduped_papers.append(normalized_paper)
 
     papers[:] = deduped_papers
     print(
         "[validate] Completed: "
-        f"kept={len(deduped_papers)} removed_duplicates={removed_duplicates} rejected={rejected_records}"
+        f"kept={len(deduped_papers)} removed_duplicates={removed_duplicates} "
+        f"rejected={rejected_records} uncertain={uncertain_records}"
     )
-    return removed_duplicates, rejected_records
+    return removed_duplicates, rejected_records, uncertain_records
 
 
 def generate_category_markdown(papers: Sequence[Dict[str, Any]], category: str) -> str:
     category_papers = [paper for paper in papers if category in paper["categories"]]
-    category_papers.sort(key=lambda p: (-p["published"].timestamp(), p["title"].lower()))
+    category_papers.sort(key=_published_sort_key)
 
     lines = []
     for paper in category_papers:
@@ -337,7 +476,10 @@ def generate_category_markdown(papers: Sequence[Dict[str, Any]], category: str) 
         arxiv_url = paper["arxiv_url"]
         links = paper["repo_links"]
 
-        line = f"* **[{title}]({arxiv_url})** - [Code]({links[0]})"
+        confidence = paper.get("confidence", {}).get(category, "medium")
+        confidence_badge = f"(confidence: {confidence})"
+
+        line = f"* **[{title}]({arxiv_url})** - [Code]({links[0]}) {confidence_badge}"
         if len(links) > 1:
             extras = [f"[Code{i + 2}]({url})" for i, url in enumerate(links[1:])]
             line += " | " + " | ".join(extras)
@@ -345,6 +487,15 @@ def generate_category_markdown(papers: Sequence[Dict[str, Any]], category: str) 
         lines.append(line)
 
     return "\n".join(lines)
+
+
+def _published_sort_key(paper: Dict[str, Any]) -> Tuple[float, str]:
+    published = paper["published"]
+    if published.tzinfo is None:
+        published = published.replace(tzinfo=timezone.utc)
+    else:
+        published = published.astimezone(timezone.utc)
+    return (-published.timestamp(), paper["title"].lower())
 
 
 def replace_category_block(content: str, marker: str, body: str) -> str:
@@ -357,7 +508,47 @@ def replace_category_block(content: str, marker: str, body: str) -> str:
     return re.sub(pattern, replacement, content, flags=re.DOTALL)
 
 
-def update_readme(papers: Sequence[Dict[str, Any]], readme_path: str = "README.md") -> Dict[str, int]:
+def build_coverage_report(
+    papers: Sequence[Dict[str, Any]],
+    stats: Dict[str, int],
+    conference_scope: str,
+    mode: str,
+    tracks: str,
+) -> str:
+    category_counts = {category: len([p for p in papers if category in p["categories"]]) for category in CATEGORY_ORDER}
+    total = len(papers)
+
+    lines = [
+        f"- Conference scope: `{conference_scope}`",
+        f"- Discovery mode: `{mode}`",
+        f"- Tracks: `{tracks}`",
+        f"- Total code-backed papers: `{total}`",
+        f"- Fetched arXiv records: `{stats['fetched_records']}`",
+        f"- Unique arXiv records: `{stats['unique_arxiv_records']}`",
+        f"- Filtered (non-target): `{stats['filtered_non_target']}`",
+        f"- Filtered (track): `{stats['filtered_track']}`",
+        f"- Filtered (no code links): `{stats['without_code_links']}`",
+        "",
+        "| Category | Count | Gap to 1000 |",
+        "|---|---:|---:|",
+    ]
+
+    for category in CATEGORY_ORDER:
+        count = category_counts[category]
+        gap = max(0, 1000 - count)
+        lines.append(f"| {category} | {count} | {gap} |")
+
+    return "\n".join(lines)
+
+
+def update_readme(
+    papers: Sequence[Dict[str, Any]],
+    stats: Dict[str, int],
+    conference_scope: str,
+    mode: str,
+    tracks: str,
+    readme_path: str = "README.md",
+) -> Dict[str, int]:
     with open(readme_path, "r", encoding="utf-8") as file:
         content = file.read()
 
@@ -367,6 +558,17 @@ def update_readme(papers: Sequence[Dict[str, Any]], readme_path: str = "README.m
         body = generate_category_markdown(papers, category)
         content = replace_category_block(content, marker, body)
         category_counts[category] = len([p for p in papers if category in p["categories"]])
+
+    coverage_body = build_coverage_report(papers, stats, conference_scope, mode, tracks)
+    coverage_match = COVERAGE_BLOCK_PATTERN.search(content)
+    if coverage_match:
+        content = COVERAGE_BLOCK_PATTERN.sub(
+            f"<!-- BEGIN COVERAGE_REPORT -->\n{coverage_body}\n<!-- END COVERAGE_REPORT -->",
+            content,
+        )
+
+    content = SCOPE_LINE_PATTERN.sub(f"**Conference Scope**: {conference_scope}", content)
+    content = MODE_LINE_PATTERN.sub(f"**Discovery Mode**: {mode}", content)
 
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     content = re.sub(
@@ -382,9 +584,33 @@ def update_readme(papers: Sequence[Dict[str, Any]], readme_path: str = "README.m
 
 
 def main() -> int:
-    print("Starting Awesome MICCAI 2026 update")
+    parser = argparse.ArgumentParser(description="Update Awesome MICCAI list")
+    parser.add_argument(
+        "--mode",
+        choices=["strict", "broad"],
+        default="strict",
+        help="Discovery strictness",
+    )
+    parser.add_argument(
+        "--conference-scope",
+        choices=sorted(CONFERENCE_SCOPE_OPTIONS),
+        default="miccai-2026",
+        help="Conference scope",
+    )
+    parser.add_argument(
+        "--tracks",
+        choices=sorted(TRACK_OPTIONS),
+        default="all",
+        help="Track filter",
+    )
+    args = parser.parse_args()
 
-    papers, stats, failed_queries = discover_papers()
+    print(
+        "Starting Awesome MICCAI update "
+        f"(mode={args.mode}, conference_scope={args.conference_scope}, tracks={args.tracks})"
+    )
+
+    papers, stats, failed_queries = discover_papers(args.mode, args.conference_scope, args.tracks)
 
     if failed_queries:
         print("[discover] Failing update because one or more discovery queries failed:")
@@ -392,16 +618,25 @@ def main() -> int:
             print(f"  - {failure}")
         return 1
 
-    removed_duplicates, rejected_records = validate_papers_data(papers)
-    category_counts = update_readme(papers)
+    removed_duplicates, rejected_records, uncertain_records = validate_papers_data(papers)
+    category_counts = update_readme(
+        papers,
+        stats,
+        args.conference_scope,
+        args.mode,
+        args.tracks,
+    )
 
     print("[summary] Pipeline completed")
     print(f"[summary] fetched_records={stats['fetched_records']}")
     print(f"[summary] unique_arxiv_records={stats['unique_arxiv_records']}")
     print(f"[summary] without_code_links={stats['without_code_links']}")
+    print(f"[summary] filtered_non_target={stats['filtered_non_target']}")
+    print(f"[summary] filtered_track={stats['filtered_track']}")
     print(f"[summary] accepted_records={stats['accepted_records']}")
     print(f"[summary] deduplicated_records={removed_duplicates}")
     print(f"[summary] rejected_records={rejected_records}")
+    print(f"[summary] uncertain_records={uncertain_records}")
     print("[summary] category_counts=" + ", ".join(f"{k}:{v}" for k, v in category_counts.items()))
 
     return 0

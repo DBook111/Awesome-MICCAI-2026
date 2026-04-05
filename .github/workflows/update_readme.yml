@@ -31,7 +31,7 @@ jobs:
         
     - name: Run update script
       run: |
-        python scripts/update_papers.py
+        python scripts/update_papers.py --conference-scope miccai-all-years --mode broad --tracks all
 
     - name: Validate generated README
       run: |

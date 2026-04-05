@@ -21,12 +21,19 @@ CATEGORY_MARKERS = [
 ]
 
 ALLOWED_CODE_HOSTS = {"github.com", "gitlab.com", "huggingface.co"}
+COVERAGE_BLOCK_PATTERN = re.compile(
+    r"<!-- BEGIN COVERAGE_REPORT -->(?P<body>.*?)<!-- END COVERAGE_REPORT -->", re.S
+)
+SCOPE_LINE_PATTERN = re.compile(r"^\*\*Conference Scope\*\*: (?P<scope>.+)$", re.M)
+MODE_LINE_PATTERN = re.compile(r"^\*\*Discovery Mode\*\*: (?P<mode>.+)$", re.M)
 
 ENTRY_PATTERN = re.compile(
     r"^\* \*\*\[(?P<title>.+?)\]\((?P<arxiv>https?://arxiv\.org/abs/\d{4}\.\d{4,5}(?:v\d+)?)\)\*\* - "
     r"\[Code\]\((?P<code>https?://[^\s)]+)\)(?P<extra>.*)$"
 )
 EXTRA_CODE_PATTERN = re.compile(r"\[Code\d+\]\((https?://[^\s)]+)\)")
+CONFIDENCE_PATTERN = re.compile(r"\(confidence:\s*(high|medium)\)")
+SUMMARY_CATEGORY_ROW_PATTERN = re.compile(r"^\|\s*(?P<category>[^|]+)\|\s*(?P<count>\d+)\s*\|\s*(?P<gap>\d+)\s*\|$")
 
 
 @dataclass
@@ -135,6 +142,73 @@ def validate_readme_text(readme: str) -> List[str]:
             if code_url in seen_code:
                 errors.append(f"{entry.marker}: duplicated code URL in one entry {code_url}")
             seen_code.add(code_url)
+
+    # Enforce confidence tags in each non-empty category line.
+    for marker in CATEGORY_MARKERS:
+        try:
+            block = _extract_category_block(readme, marker)
+        except ValueError:
+            continue
+        for raw_line in block.splitlines():
+            line = raw_line.strip()
+            if not line:
+                continue
+            if line.startswith("* ") and not CONFIDENCE_PATTERN.search(line):
+                errors.append(f"{marker}: missing confidence tag in entry: {line}")
+
+    scope_match = SCOPE_LINE_PATTERN.search(readme)
+    mode_match = MODE_LINE_PATTERN.search(readme)
+    if not scope_match:
+        errors.append("Missing '**Conference Scope**' metadata line")
+    if not mode_match:
+        errors.append("Missing '**Discovery Mode**' metadata line")
+
+    coverage_match = COVERAGE_BLOCK_PATTERN.search(readme)
+    if not coverage_match:
+        errors.append("Missing coverage report block markers")
+        return errors
+
+    coverage_body = coverage_match.group("body")
+    row_counts: Dict[str, int] = {}
+    for raw_line in coverage_body.splitlines():
+        line = raw_line.strip()
+        match = SUMMARY_CATEGORY_ROW_PATTERN.match(line)
+        if not match:
+            continue
+        category = match.group("category").strip()
+        row_counts[category] = int(match.group("count"))
+        expected_gap = max(0, 1000 - int(match.group("count")))
+        if int(match.group("gap")) != expected_gap:
+            errors.append(f"Coverage gap mismatch for '{category}': expected {expected_gap}")
+
+    if len(row_counts) != len(CATEGORY_MARKERS):
+        errors.append("Coverage report must include exactly one row per category")
+        return errors
+
+    marker_to_name = {
+        "SEGMENTATION": "Segmentation",
+        "RECONSTRUCTION": "Reconstruction",
+        "CLASSIFICATION": "Classification",
+        "IMAGE_REGISTRATION": "Image Registration",
+        "DOMAIN_ADAPTATION": "Domain Adaptation",
+        "GENERATIVE_MODELS": "Generative Models",
+        "GENERAL": "General",
+    }
+
+    for marker, category_name in marker_to_name.items():
+        try:
+            block = _extract_category_block(readme, marker)
+        except ValueError:
+            continue
+        count = sum(1 for ln in block.splitlines() if ln.strip().startswith("* "))
+        reported = row_counts.get(category_name)
+        if reported is None:
+            errors.append(f"Coverage report missing category '{category_name}'")
+            continue
+        if count != reported:
+            errors.append(
+                f"Coverage count mismatch for '{category_name}': report={reported}, actual={count}"
+            )
 
     return errors
 
