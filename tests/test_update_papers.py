@@ -38,6 +38,14 @@ class UpdatePapersTests(unittest.TestCase):
             )
         )
 
+    def test_target_filter_broad_rejects_explicit_2024(self):
+        text = "Accepted at MICCAI 2024. Code: https://github.com/a/b"
+        self.assertFalse(
+            update_papers.is_target_miccai_paper(
+                text, "https://arxiv.org/abs/2604.12345v1", "broad", "miccai-2026"
+            )
+        )
+
     def test_target_filter_all_years_broad_accepts_miccai_without_year(self):
         text = "Submitted to MICCAI with code: https://github.com/a/b"
         self.assertTrue(
@@ -45,6 +53,9 @@ class UpdatePapersTests(unittest.TestCase):
                 text, "https://arxiv.org/abs/2404.12345v1", "broad", "miccai-all-years"
             )
         )
+
+    def test_extract_arxiv_year_supports_legacy_ids(self):
+        self.assertEqual(update_papers._extract_arxiv_year("https://arxiv.org/abs/cs/0601001"), 6)
 
     def test_track_filter(self):
         self.assertTrue(update_papers.track_matches("all", "workshops"))

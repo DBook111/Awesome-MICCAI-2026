@@ -14,7 +14,7 @@ from __future__ import annotations
 import argparse
 import re
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Pattern, Sequence, Tuple
 from urllib.parse import urlparse
 
 import arxiv
@@ -95,6 +95,10 @@ CATEGORY_RULES = {
         (r"\bflow matching\b", 2),
     ],
 }
+CATEGORY_COMPILED_RULES: Dict[str, List[Tuple[Pattern[str], int]]] = {
+    category: [(re.compile(pattern), weight) for pattern, weight in rules]
+    for category, rules in CATEGORY_RULES.items()
+}
 
 CATEGORY_THRESHOLDS = {
     "Segmentation": 2,
@@ -114,6 +118,9 @@ ARXIV_ABS_PATTERN = re.compile(r"^https?://arxiv\.org/abs/\d{4}\.\d{4,5}(?:v\d+)
 MICCAI_2026_PATTERN = re.compile(r"\bmiccai\s*[-_ ]?\s*2026\b|\bmiccai(?:'26|26)\b", re.IGNORECASE)
 MICCAI_PATTERN = re.compile(r"\bmiccai\b", re.IGNORECASE)
 MICCAI_2025_PATTERN = re.compile(r"\bmiccai\s*[-_ ]?\s*2025\b|\bmiccai(?:'25|25)\b", re.IGNORECASE)
+MICCAI_EXPLICIT_YEAR_PATTERN = re.compile(
+    r"\bmiccai\s*[-_ ]?(?P<year>20\d{2}|'?\d{2})\b", re.IGNORECASE
+)
 MICCAI_SUBMISSION_PATTERN = re.compile(
     r"\b(submitted|under review|accepted|camera[- ]ready)\b.{0,32}\bmiccai\b",
     re.IGNORECASE,
@@ -207,11 +214,11 @@ def score_categories(title: str, abstract: str) -> Dict[str, int]:
     abstract_l = abstract.lower()
 
     scores: Dict[str, int] = {}
-    for category, rules in CATEGORY_RULES.items():
+    for category, rules in CATEGORY_COMPILED_RULES.items():
         score = 0
         for pattern, weight in rules:
-            title_hit = re.search(pattern, title_l)
-            abstract_hit = re.search(pattern, abstract_l)
+            title_hit = pattern.search(title_l)
+            abstract_hit = pattern.search(abstract_l)
             if title_hit:
                 score += weight * 2
             elif abstract_hit:
@@ -220,8 +227,9 @@ def score_categories(title: str, abstract: str) -> Dict[str, int]:
     return scores
 
 
-def categorize_paper(title: str, abstract: str) -> List[str]:
-    scores = score_categories(title, abstract)
+def categorize_paper(title: str, abstract: str, scores: Optional[Dict[str, int]] = None) -> List[str]:
+    if scores is None:
+        scores = score_categories(title, abstract)
     categories = [
         category
         for category in CATEGORY_ORDER
@@ -245,9 +253,24 @@ def get_category_confidence(category_scores: Dict[str, int], categories: Sequenc
 
 def _extract_arxiv_year(arxiv_url: str) -> Optional[int]:
     match = re.search(r"/abs/(\d{2})\d{2}\.\d{4,5}", arxiv_url)
-    if not match:
-        return None
-    return int(match.group(1))
+    if match:
+        return int(match.group(1))
+    # Legacy arXiv IDs such as /abs/cs/0601001
+    legacy_match = re.search(r"/abs/[a-z\-]+/(\d{2})\d{4}", arxiv_url, re.IGNORECASE)
+    if legacy_match:
+        return int(legacy_match.group(1))
+    return None
+
+
+def _extract_explicit_miccai_years(text: str) -> List[int]:
+    years: List[int] = []
+    for match in MICCAI_EXPLICIT_YEAR_PATTERN.finditer(text):
+        value = match.group("year").replace("'", "")
+        year = int(value)
+        if year < 100:
+            year += 2000
+        years.append(year)
+    return years
 
 
 def _infer_track(text: str) -> str:
@@ -266,6 +289,12 @@ def track_matches(requested_track: str, inferred_track: str) -> bool:
 
 def is_target_miccai_paper(text: str, arxiv_url: str, mode: str, conference_scope: str) -> bool:
     if conference_scope == "miccai-2026":
+        explicit_years = _extract_explicit_miccai_years(text)
+        if 2026 in explicit_years:
+            return True
+        if explicit_years and 2026 not in explicit_years:
+            return False
+
         if MICCAI_2026_PATTERN.search(text):
             return True
         if mode == "strict":
@@ -324,7 +353,7 @@ def discover_papers(mode: str, conference_scope: str, tracks: str) -> Tuple[List
         try:
             search = arxiv.Search(
                 query=query,
-                max_results=1000 if conference_scope == "miccai-all-years" else 300,
+                max_results=5000 if conference_scope == "miccai-all-years" else 300,
                 sort_by=arxiv.SortCriterion.SubmittedDate,
                 sort_order=arxiv.SortOrder.Descending,
             )
@@ -406,7 +435,7 @@ def validate_papers_data(papers: List[Dict[str, Any]]) -> Tuple[int, int, int]:
             rejected_records += 1
             continue
 
-        pair_key = (arxiv_url.lower(), tuple(cleaned_links))
+        pair_key = arxiv_url.lower()
         if pair_key in seen_pairs:
             removed_duplicates += 1
             continue
@@ -416,7 +445,7 @@ def validate_papers_data(papers: List[Dict[str, Any]]) -> Tuple[int, int, int]:
         normalized_paper["repo_links"] = cleaned_links
 
         scores = score_categories(title, paper.get("summary", ""))
-        categories = categorize_paper(title, paper.get("summary", ""))
+        categories = categorize_paper(title, paper.get("summary", ""), scores=scores)
         normalized_paper["category_scores"] = scores
         normalized_paper["categories"] = categories
         normalized_paper["confidence"] = get_category_confidence(scores, categories)
@@ -439,7 +468,7 @@ def validate_papers_data(papers: List[Dict[str, Any]]) -> Tuple[int, int, int]:
 
 def generate_category_markdown(papers: Sequence[Dict[str, Any]], category: str) -> str:
     category_papers = [paper for paper in papers if category in paper["categories"]]
-    category_papers.sort(key=lambda p: (-p["published"].timestamp(), p["title"].lower()))
+    category_papers.sort(key=_published_sort_key)
 
     lines = []
     for paper in category_papers:
@@ -458,6 +487,15 @@ def generate_category_markdown(papers: Sequence[Dict[str, Any]], category: str) 
         lines.append(line)
 
     return "\n".join(lines)
+
+
+def _published_sort_key(paper: Dict[str, Any]) -> Tuple[float, str]:
+    published = paper["published"]
+    if published.tzinfo is None:
+        published = published.replace(tzinfo=timezone.utc)
+    else:
+        published = published.astimezone(timezone.utc)
+    return (-published.timestamp(), paper["title"].lower())
 
 
 def replace_category_block(content: str, marker: str, body: str) -> str:
