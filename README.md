@@ -56,18 +56,18 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-all-years`
 - Discovery mode: `broad`
 - Tracks: `all`
-- Total code-backed papers: `784`
-- Fetched arXiv records: `3063`
-- Unique arXiv records: `2950`
+- Total code-backed papers: `785`
+- Fetched arXiv records: `3068`
+- Unique arXiv records: `2955`
 - Filtered (non-target): `0`
 - Filtered (track): `0`
-- Filtered (no code links): `2166`
+- Filtered (no code links): `2170`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
 | Segmentation | 351 | 649 |
 | Reconstruction | 114 | 886 |
-| Classification | 300 | 700 |
+| Classification | 301 | 699 |
 | Image Registration | 95 | 905 |
 | Domain Adaptation | 62 | 938 |
 | Generative Models | 169 | 831 |
@@ -132,7 +132,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[Single Image Test-Time Adaptation via Multi-View Co-Training](https://arxiv.org/abs/2506.23705v1)** - [Code](https://github.com/smriti-joshi/muvi) (confidence: medium)
 * **[SurgTPGS: Semantic 3D Surgical Scene Understanding with Text Promptable Gaussian Splatting](https://arxiv.org/abs/2506.23309v2)** - [Code](https://github.com/lastbasket/surgtpgs) (confidence: high)
 * **[FedCLAM: Client Adaptive Momentum with Foreground Intensity Matching for Federated Medical Image Segmentation](https://arxiv.org/abs/2506.22580v1)** - [Code](https://github.com/siomvas/fedclam) (confidence: high)
-* **[Cardiovascular disease classification using radiomics and geometric features from cardiac CT](https://arxiv.org/abs/2506.22226v1)** - [Code](https://github.com/biomedia-mira/grc-net) (confidence: medium)
+* **[Cardiovascular disease classification using radiomics and geometric features from cardiac CT](https://arxiv.org/abs/2506.22226v2)** - [Code](https://github.com/biomedia-mira/grc-net) (confidence: medium)
 * **[Tied Prototype Model for Few-Shot Medical Image Segmentation](https://arxiv.org/abs/2506.22101v1)** - [Code](https://github.com/hjk92g/tpm-fss) (confidence: high)
 * **[Exploring the Design Space of 3D MLLMs for CT Report Generation](https://arxiv.org/abs/2506.21535v2)** - [Code](https://github.com/bowang-lab/amos-mm-solution) (confidence: high)
 * **[HyperSORT: Self-Organising Robust Training with hyper-networks](https://arxiv.org/abs/2506.21430v1)** - [Code](https://github.com/imfusiongmbh/hypersort) (confidence: high)
@@ -558,6 +558,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN CLASSIFICATION_PAPERS -->
+* **[Wasserstein-Aligned Localisation for VLM-Based Distributional OOD Detection in Medical Imaging](https://arxiv.org/abs/2605.05161v1)** - [Code](https://github.com/bkainz/waldo_miccai26_demo) (confidence: high)
 * **[Exemplar Diffusion: Improving Medical Object Detection with Opportunistic Labels](https://arxiv.org/abs/2603.15267v1)** - [Code](https://github.com/waahlstrand/exemplardiffusion) (confidence: high)
 * **[Benchmark-Ready 3D Anatomical Shape Classification](https://arxiv.org/abs/2511.01613v1)** - [Code](https://github.com/tomaskrsicka/medshapenet19-pspooling) (confidence: high)
 * **[MeisenMeister: A Simple Two Stage Pipeline for Breast Cancer Classification on MRI](https://arxiv.org/abs/2510.27326v1)** - [Code](https://github.com/mic-dkfz/meisenmeister) (confidence: high)
@@ -607,7 +608,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[Uncertainty-aware Diffusion and Reinforcement Learning for Joint Plane Localization and Anomaly Diagnosis in 3D Ultrasound](https://arxiv.org/abs/2506.23538v2)** - [Code](https://github.com/yuhoo0302/cua-us) (confidence: high)
 * **[Exposing and Mitigating Calibration Biases and Demographic Unfairness in MLLM Few-Shot In-Context Learning for Medical Image Classification](https://arxiv.org/abs/2506.23298v3)** - [Code](https://github.com/xingbpshen/medical-calibration-fairness-mllm) (confidence: high)
 * **[BrainMT: A Hybrid Mamba-Transformer Architecture for Modeling Long-Range Dependencies in Functional MRI Data](https://arxiv.org/abs/2506.22591v1)** - [Code](https://github.com/arunkumar-kannan/brainmt-fmri) (confidence: medium)
-* **[Cardiovascular disease classification using radiomics and geometric features from cardiac CT](https://arxiv.org/abs/2506.22226v1)** - [Code](https://github.com/biomedia-mira/grc-net) (confidence: high)
+* **[Cardiovascular disease classification using radiomics and geometric features from cardiac CT](https://arxiv.org/abs/2506.22226v2)** - [Code](https://github.com/biomedia-mira/grc-net) (confidence: high)
 * **[RetFiner: A Vision-Language Refinement Scheme for Retinal Foundation Models](https://arxiv.org/abs/2506.22149v1)** - [Code](https://github.com/ronnief1/retfiner) (confidence: medium)
 * **[Tied Prototype Model for Few-Shot Medical Image Segmentation](https://arxiv.org/abs/2506.22101v1)** - [Code](https://github.com/hjk92g/tpm-fss) (confidence: medium)
 * **[Recognizing Surgical Phases Anywhere: Few-Shot Test-time Adaptation and Task-graph Guided Refinement](https://arxiv.org/abs/2506.20254v2)** - [Code](https://github.com/camma-public/spa) (confidence: medium)
@@ -888,7 +889,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[SurgTPGS: Semantic 3D Surgical Scene Understanding with Text Promptable Gaussian Splatting](https://arxiv.org/abs/2506.23309v2)** - [Code](https://github.com/lastbasket/surgtpgs) (confidence: medium)
 * **[FedCLAM: Client Adaptive Momentum with Foreground Intensity Matching for Federated Medical Image Segmentation](https://arxiv.org/abs/2506.22580v1)** - [Code](https://github.com/siomvas/fedclam) (confidence: medium)
 * **[DIGS: Dynamic CBCT Reconstruction using Deformation-Informed 4D Gaussian Splatting and a Low-Rank Free-Form Deformation Model](https://arxiv.org/abs/2506.22280v1)** - [Code](https://github.com/yuliang-huang/digs) (confidence: high)
-* **[Cardiovascular disease classification using radiomics and geometric features from cardiac CT](https://arxiv.org/abs/2506.22226v1)** - [Code](https://github.com/biomedia-mira/grc-net) (confidence: high)
+* **[Cardiovascular disease classification using radiomics and geometric features from cardiac CT](https://arxiv.org/abs/2506.22226v2)** - [Code](https://github.com/biomedia-mira/grc-net) (confidence: high)
 * **[VoxelOpt: Voxel-Adaptive Message Passing for Discrete Optimization in Deformable Abdominal CT Registration](https://arxiv.org/abs/2506.19975v1)** - [Code](https://github.com/tinymilky/voxelopt) (confidence: high)
 * **[Global and Local Contrastive Learning for Joint Representations from Cardiac MRI and ECG](https://arxiv.org/abs/2506.20683v1)** - [Code](https://github.com/alsalivan/ecgcmr) (confidence: medium)
 * **[Reconsidering Explicit Longitudinal Mammography Alignment for Enhanced Breast Cancer Risk Prediction](https://arxiv.org/abs/2506.19363v1)** - [Code](https://github.com/sot176/longitudinal_mammogram_alignment) (confidence: high)
@@ -1310,6 +1311,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-all-years
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-05-06 10:20 UTC by GitHub Actions
+**Last Updated**: 2026-05-09 09:21 UTC by GitHub Actions
 
 **License**: Apache License 2.0
