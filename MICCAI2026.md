@@ -54,14 +54,14 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 
 <!-- BEGIN COVERAGE_REPORT -->
 - Conference scope: `miccai-2026`
-- Discovery mode: `strict`
+- Discovery mode: `broad`
 - Tracks: `main`
 - Total code-backed papers: `5`
-- Fetched arXiv records: `25`
-- Unique arXiv records: `25`
-- Filtered (non-target): `0`
-- Filtered (track): `1`
-- Filtered (no code links): `19`
+- Fetched arXiv records: `656`
+- Unique arXiv records: `605`
+- Filtered (non-target): `533`
+- Filtered (track): `33`
+- Filtered (no code links): `34`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
@@ -135,8 +135,8 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Repository Topics**: awesome, awesome-list, miccai, miccai2026, medical-imaging, deep-learning, computer-vision, segmentation, reconstruction, classification, medical-image-analysis, artificial-intelligence
 
 **Conference Scope**: miccai-2026
-**Discovery Mode**: strict
+**Discovery Mode**: broad
 
-**Last Updated**: 2026-05-11 21:20 北京时间 by GitHub Actions
+**Last Updated**: 2026-05-11 21:56 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
