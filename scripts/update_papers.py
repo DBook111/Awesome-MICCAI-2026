@@ -28,6 +28,10 @@ CATEGORY_ORDER = [
     "Image Registration",
     "Domain Adaptation",
     "Generative Models",
+    "Fundus Imaging",
+    "OCT",
+    "OCTA",
+    "Ophthalmic Foundation Models",
     "General",
 ]
 
@@ -38,6 +42,10 @@ CATEGORY_MARKERS = {
     "Image Registration": "IMAGE_REGISTRATION",
     "Domain Adaptation": "DOMAIN_ADAPTATION",
     "Generative Models": "GENERATIVE_MODELS",
+    "Fundus Imaging": "FUNDUS_IMAGING",
+    "OCT": "OCT",
+    "OCTA": "OCTA",
+    "Ophthalmic Foundation Models": "OPHTHALMIC_FOUNDATION_MODELS",
     "General": "GENERAL",
 }
 
@@ -95,6 +103,36 @@ CATEGORY_RULES = {
         (r"\bautoencoder\b", 2),
         (r"\bflow matching\b", 2),
     ],
+    "Fundus Imaging": [
+        (r"\bfundus\b", 3),
+        (r"\bretina(?:l)?\b", 2),
+        (r"\bophthalm(?:ic|ology)\b", 2),
+        (r"\boptic disc\b", 2),
+        (r"\boptic cup\b", 2),
+        (r"\bmacula(?:r)?\b", 2),
+    ],
+    "OCT": [
+        (r"\boptical coherence tomography\b", 3),
+        (r"\boct\b", 2),
+        (r"\boct b[- ]?scan\b", 2),
+        (r"\boct volume\b", 2),
+        (r"\bretina(?:l)?\b", 1),
+    ],
+    "OCTA": [
+        (r"\boptical coherence tomography angiography\b", 3),
+        (r"\bocta\b", 3),
+        (r"\bretinal angiography\b", 2),
+        (r"\bvessel density\b", 1),
+    ],
+    "Ophthalmic Foundation Models": [
+        (r"\bfoundation model(?:s)?\b", 2),
+        (r"\bvision foundation model(?:s)?\b", 2),
+        (r"\bpre[- ]?trained\b", 1),
+        (r"\bfundus\b", 2),
+        (r"\bretina(?:l)?\b", 2),
+        (r"\bophthalm(?:ic|ology)\b", 2),
+        (r"\bocta?\b", 2),
+    ],
 }
 CATEGORY_COMPILED_RULES: Dict[str, List[Tuple[Pattern[str], int]]] = {
     category: [(re.compile(pattern), weight) for pattern, weight in rules]
@@ -108,6 +146,10 @@ CATEGORY_THRESHOLDS = {
     "Image Registration": 2,
     "Domain Adaptation": 2,
     "Generative Models": 2,
+    "Fundus Imaging": 2,
+    "OCT": 2,
+    "OCTA": 2,
+    "Ophthalmic Foundation Models": 3,
 }
 
 REPO_URL_PATTERN = re.compile(

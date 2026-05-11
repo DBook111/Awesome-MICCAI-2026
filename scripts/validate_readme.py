@@ -17,6 +17,10 @@ CATEGORY_MARKERS = [
     "IMAGE_REGISTRATION",
     "DOMAIN_ADAPTATION",
     "GENERATIVE_MODELS",
+    "FUNDUS_IMAGING",
+    "OCT",
+    "OCTA",
+    "OPHTHALMIC_FOUNDATION_MODELS",
     "GENERAL",
 ]
 
@@ -192,6 +196,10 @@ def validate_readme_text(readme: str) -> List[str]:
         "IMAGE_REGISTRATION": "Image Registration",
         "DOMAIN_ADAPTATION": "Domain Adaptation",
         "GENERATIVE_MODELS": "Generative Models",
+        "FUNDUS_IMAGING": "Fundus Imaging",
+        "OCT": "OCT",
+        "OCTA": "OCTA",
+        "OPHTHALMIC_FOUNDATION_MODELS": "Ophthalmic Foundation Models",
         "GENERAL": "General",
     }
 

@@ -18,6 +18,10 @@ This repository automatically discovers and organizes MICCAI papers from arXiv t
 - [Image Registration](#image-registration)
 - [Domain Adaptation](#domain-adaptation)
 - [Generative Models](#generative-models)
+- [Fundus Imaging](#fundus-imaging)
+- [OCT](#oct)
+- [OCTA](#octa)
+- [Ophthalmic Foundation Models](#ophthalmic-foundation-models)
 - [General](#general)
 
 ## 🤝 How to Contribute
@@ -121,6 +125,34 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[Exemplar Diffusion: Improving Medical Object Detection with Opportunistic Labels](https://arxiv.org/abs/2603.15267v1)** - [Code](https://github.com/waahlstrand/exemplardiffusion) (confidence: high)
 * **[EchoLVFM: One-Step Video Generation via Latent Flow Matching for Echocardiogram Synthesis](https://arxiv.org/abs/2603.13967v1)** - [Code](https://github.com/engemmanuel/echolvfm) (confidence: high)
 <!-- END GENERATIVE_MODELS_PAPERS -->
+
+## 👁️ Fundus Imaging
+
+*This list is automatically generated. See any issues? Please open a pull request!*
+
+<!-- BEGIN FUNDUS_IMAGING_PAPERS -->
+<!-- END FUNDUS_IMAGING_PAPERS -->
+
+## 🧿 OCT
+
+*This list is automatically generated. See any issues? Please open a pull request!*
+
+<!-- BEGIN OCT_PAPERS -->
+<!-- END OCT_PAPERS -->
+
+## 🩸 OCTA
+
+*This list is automatically generated. See any issues? Please open a pull request!*
+
+<!-- BEGIN OCTA_PAPERS -->
+<!-- END OCTA_PAPERS -->
+
+## 🧠👁️ Ophthalmic Foundation Models
+
+*This list is automatically generated. See any issues? Please open a pull request!*
+
+<!-- BEGIN OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
+<!-- END OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
 
 ## 📚 General
 
