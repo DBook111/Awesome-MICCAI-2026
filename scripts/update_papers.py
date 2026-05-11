@@ -13,7 +13,8 @@ from __future__ import annotations
 
 import argparse
 import re
-from datetime import datetime, timezone
+import time
+from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Pattern, Sequence, Tuple
 from urllib.parse import urlparse
 
@@ -42,7 +43,7 @@ CATEGORY_MARKERS = {
 
 ALLOWED_CODE_HOSTS = {"github.com", "gitlab.com", "huggingface.co"}
 TRACK_OPTIONS = {"main", "workshops", "challenges", "all"}
-CONFERENCE_SCOPE_OPTIONS = {"miccai-2026", "miccai-all-years"}
+CONFERENCE_SCOPE_OPTIONS = {"miccai-all-years"}
 
 # (regex pattern, weight)
 CATEGORY_RULES = {
@@ -115,9 +116,8 @@ REPO_URL_PATTERN = re.compile(
 )
 
 ARXIV_ABS_PATTERN = re.compile(r"^https?://arxiv\.org/abs/\d{4}\.\d{4,5}(?:v\d+)?$")
-MICCAI_2026_PATTERN = re.compile(r"\bmiccai\s*[-_ ]?\s*2026\b|\bmiccai(?:'26|26)\b", re.IGNORECASE)
 MICCAI_PATTERN = re.compile(r"\bmiccai\b", re.IGNORECASE)
-MICCAI_2025_PATTERN = re.compile(r"\bmiccai\s*[-_ ]?\s*2025\b|\bmiccai(?:'25|25)\b", re.IGNORECASE)
+MICCAI_YEAR_SCOPE_PATTERN = re.compile(r"^miccai-(20\d{2})$")
 MICCAI_EXPLICIT_YEAR_PATTERN = re.compile(
     r"\bmiccai\s*[-_ ]?(?P<year>20\d{2}|'?\d{2})\b", re.IGNORECASE
 )
@@ -136,6 +136,22 @@ MODE_LINE_PATTERN = re.compile(r"\*\*Discovery Mode\*\*: [^\n]*")
 COVERAGE_BLOCK_PATTERN = re.compile(
     r"<!-- BEGIN COVERAGE_REPORT -->(?P<body>.*?)<!-- END COVERAGE_REPORT -->", re.S
 )
+
+
+def resolve_output_path(conference_scope: str, output_path: Optional[str]) -> str:
+    if output_path:
+        return output_path
+    target_year = get_target_miccai_year(conference_scope)
+    if target_year is not None:
+        return f"MICCAI{target_year}.md"
+    return "README.md"
+
+
+def get_target_miccai_year(conference_scope: str) -> Optional[int]:
+    match = MICCAI_YEAR_SCOPE_PATTERN.match(conference_scope)
+    if not match:
+        return None
+    return int(match.group(1))
 
 
 def _normalize_host(host: str) -> str:
@@ -287,24 +303,34 @@ def track_matches(requested_track: str, inferred_track: str) -> bool:
     return requested_track == inferred_track
 
 
+def resolve_requested_track(tracks: str, exclude_non_main: bool) -> str:
+    if exclude_non_main:
+        return "main"
+    return tracks
+
+
 def is_target_miccai_paper(text: str, arxiv_url: str, mode: str, conference_scope: str) -> bool:
-    if conference_scope == "miccai-2026":
+    target_year = get_target_miccai_year(conference_scope)
+    if target_year is not None:
         explicit_years = _extract_explicit_miccai_years(text)
-        if 2026 in explicit_years:
+        if target_year in explicit_years:
             return True
-        if explicit_years and 2026 not in explicit_years:
+        if explicit_years and target_year not in explicit_years:
             return False
 
-        if MICCAI_2026_PATTERN.search(text):
+        year_short = target_year % 100
+        target_year_pattern = re.compile(
+            rf"\bmiccai\s*[-_ ]?\s*{target_year}\b|\bmiccai(?:'{year_short:02d}|{year_short:02d})\b",
+            re.IGNORECASE,
+        )
+        if target_year_pattern.search(text):
             return True
         if mode == "strict":
             return False
         if not MICCAI_PATTERN.search(text):
             return False
-        if MICCAI_2025_PATTERN.search(text):
-            return False
         year = _extract_arxiv_year(arxiv_url)
-        if year == 26:
+        if year == year_short:
             return True
         return bool(MICCAI_SUBMISSION_PATTERN.search(text))
 
@@ -317,14 +343,47 @@ def is_target_miccai_paper(text: str, arxiv_url: str, mode: str, conference_scop
 
 
 def build_queries(mode: str, conference_scope: str) -> List[str]:
-    if conference_scope == "miccai-2026":
-        queries = ['ti:"MICCAI 2026"', 'abs:"MICCAI 2026"', 'co:"MICCAI 2026"']
+    target_year = get_target_miccai_year(conference_scope)
+    if target_year is not None:
+        queries = [
+            f'ti:"MICCAI {target_year}"',
+            f'abs:"MICCAI {target_year}"',
+            f'co:"MICCAI {target_year}"',
+        ]
         if mode == "broad":
             queries.extend(['ti:"MICCAI"', 'abs:"MICCAI"', 'co:"MICCAI"'])
         return queries
 
     # miccai-all-years
     return ['ti:"MICCAI"', 'abs:"MICCAI"', 'co:"MICCAI"']
+
+
+def _is_transient_discovery_error(exc: Exception) -> Tuple[bool, str]:
+    transient_status_codes = {429, 500, 502, 503, 504}
+    status = getattr(exc, "status_code", None)
+    if isinstance(status, int) and status in transient_status_codes:
+        return True, f"HTTP {status}"
+
+    text = str(exc)
+    status_match = re.search(r"HTTP (\d{3})", text)
+    if status_match:
+        parsed_status = int(status_match.group(1))
+        if parsed_status in transient_status_codes:
+            return True, f"HTTP {parsed_status}"
+
+    timeout_indicators = (
+        "timed out",
+        "timeout",
+        "ReadTimeout",
+        "ConnectTimeout",
+        "Connection aborted",
+        "Temporary failure in name resolution",
+    )
+    lowered = text.lower()
+    if isinstance(exc, TimeoutError) or any(token.lower() in lowered for token in timeout_indicators):
+        return True, "network timeout"
+
+    return False, "non-transient error"
 
 
 def discover_papers(mode: str, conference_scope: str, tracks: str) -> Tuple[List[Dict[str, Any]], Dict[str, int], List[str]]:
@@ -348,20 +407,43 @@ def discover_papers(mode: str, conference_scope: str, tracks: str) -> Tuple[List
         "accepted_records": 0,
     }
 
+    backoff_seconds = [20, 40, 80]
+
     for query in queries:
         print(f"[discover] Query: {query}")
-        try:
-            search = arxiv.Search(
-                query=query,
-                max_results=5000 if conference_scope == "miccai-all-years" else 300,
-                sort_by=arxiv.SortCriterion.SubmittedDate,
-                sort_order=arxiv.SortOrder.Descending,
-            )
-            results = list(client.results(search))
-            print(f"[discover] Results: {len(results)}")
-        except Exception as exc:
-            failed_queries.append(f"{query}: {exc}")
-            print(f"[discover] ERROR: {query} failed -> {exc}")
+        search = arxiv.Search(
+            query=query,
+            max_results=5000 if conference_scope == "miccai-all-years" else 300,
+            sort_by=arxiv.SortCriterion.SubmittedDate,
+            sort_order=arxiv.SortOrder.Descending,
+        )
+
+        results: List[Any] = []
+        last_exc: Optional[Exception] = None
+        for attempt in range(len(backoff_seconds) + 1):
+            try:
+                results = list(client.results(search))
+                print(f"[discover] Results: {len(results)}")
+                last_exc = None
+                break
+            except Exception as exc:
+                last_exc = exc
+                should_retry, retry_reason = _is_transient_discovery_error(exc)
+                has_retry = attempt < len(backoff_seconds)
+                if should_retry and has_retry:
+                    wait_seconds = backoff_seconds[attempt]
+                    print(
+                        f"[discover] WARN: {query} hit {retry_reason}; "
+                        f"retrying in {wait_seconds}s "
+                        f"(attempt {attempt + 1}/{len(backoff_seconds) + 1})"
+                    )
+                    time.sleep(wait_seconds)
+                    continue
+                break
+
+        if last_exc is not None:
+            failed_queries.append(f"{query}: {last_exc}")
+            print(f"[discover] ERROR: {query} failed -> {last_exc}")
             continue
 
         for result in results:
@@ -549,8 +631,16 @@ def update_readme(
     tracks: str,
     readme_path: str = "README.md",
 ) -> Dict[str, int]:
-    with open(readme_path, "r", encoding="utf-8") as file:
-        content = file.read()
+    if readme_path != "README.md":
+        try:
+            with open(readme_path, "r", encoding="utf-8") as file:
+                content = file.read()
+        except FileNotFoundError:
+            with open("README.md", "r", encoding="utf-8") as template_file:
+                content = template_file.read()
+    else:
+        with open(readme_path, "r", encoding="utf-8") as file:
+            content = file.read()
 
     category_counts: Dict[str, int] = {}
     for category in CATEGORY_ORDER:
@@ -570,7 +660,8 @@ def update_readme(
     content = SCOPE_LINE_PATTERN.sub(f"**Conference Scope**: {conference_scope}", content)
     content = MODE_LINE_PATTERN.sub(f"**Discovery Mode**: {mode}", content)
 
-    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    beijing_tz = timezone(timedelta(hours=8))
+    timestamp = datetime.now(beijing_tz).strftime("%Y-%m-%d %H:%M 北京时间")
     content = re.sub(
         r"\*\*Last Updated\*\*: [^\n]*",
         f"**Last Updated**: {timestamp} by GitHub Actions",
@@ -593,9 +684,8 @@ def main() -> int:
     )
     parser.add_argument(
         "--conference-scope",
-        choices=sorted(CONFERENCE_SCOPE_OPTIONS),
         default="miccai-2026",
-        help="Conference scope",
+        help="Conference scope: miccai-all-years or miccai-<year> (e.g., miccai-2025)",
     )
     parser.add_argument(
         "--tracks",
@@ -603,14 +693,38 @@ def main() -> int:
         default="all",
         help="Track filter",
     )
+    parser.add_argument(
+        "--exclude-non-main",
+        action="store_true",
+        help="Exclude workshop/challenge papers and keep only main-track papers",
+    )
+    parser.add_argument(
+        "--output",
+        default=None,
+        help=(
+            "Output markdown path. If omitted: miccai-<year> -> MICCAI<year>.md, "
+            "miccai-all-years -> README.md"
+        ),
+    )
     args = parser.parse_args()
+    if (
+        args.conference_scope not in CONFERENCE_SCOPE_OPTIONS
+        and get_target_miccai_year(args.conference_scope) is None
+    ):
+        parser.error(
+            "Invalid --conference-scope. Use miccai-all-years or miccai-<year> "
+            "(e.g., miccai-2025)."
+        )
+    requested_track = resolve_requested_track(args.tracks, args.exclude_non_main)
+    output_path = resolve_output_path(args.conference_scope, args.output)
 
     print(
         "Starting Awesome MICCAI update "
-        f"(mode={args.mode}, conference_scope={args.conference_scope}, tracks={args.tracks})"
+        f"(mode={args.mode}, conference_scope={args.conference_scope}, tracks={requested_track})"
     )
+    print(f"[output] Writing results to: {output_path}")
 
-    papers, stats, failed_queries = discover_papers(args.mode, args.conference_scope, args.tracks)
+    papers, stats, failed_queries = discover_papers(args.mode, args.conference_scope, requested_track)
 
     if failed_queries:
         print("[discover] Failing update because one or more discovery queries failed:")
@@ -624,7 +738,8 @@ def main() -> int:
         stats,
         args.conference_scope,
         args.mode,
-        args.tracks,
+        requested_track,
+        readme_path=output_path,
     )
 
     print("[summary] Pipeline completed")

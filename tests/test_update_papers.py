@@ -62,6 +62,14 @@ class UpdatePapersTests(unittest.TestCase):
         self.assertTrue(update_papers.track_matches("workshops", "workshops"))
         self.assertFalse(update_papers.track_matches("main", "challenges"))
 
+    def test_resolve_requested_track_no_exclusion(self):
+        self.assertEqual(update_papers.resolve_requested_track("all", False), "all")
+        self.assertEqual(update_papers.resolve_requested_track("workshops", False), "workshops")
+
+    def test_resolve_requested_track_exclude_non_main_forces_main(self):
+        self.assertEqual(update_papers.resolve_requested_track("all", True), "main")
+        self.assertEqual(update_papers.resolve_requested_track("challenges", True), "main")
+
     def test_normalize_repository_url_handles_malformed_concat(self):
         url = "https://github.com/user/repo}{https://github.com/other/repo"
         normalized = update_papers.normalize_repository_url(url)
