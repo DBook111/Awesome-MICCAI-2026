@@ -2,8 +2,8 @@ name: Update Awesome List
 
 on:
   schedule:
-    # Run daily at 8:00 AM UTC
-    - cron: '0 8 * * *'
+    # Run daily at 8:00 AM Beijing Time (00:00 UTC)
+    - cron: '0 0 * * *'
   workflow_dispatch:
     # Allow manual triggering
 
@@ -58,11 +58,11 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: 'ci: Auto-update papers list'
-        file_pattern: 'README.md'
+        file_pattern: 'README.md MICCAI*.md'
         commit_user_name: 'ambicuity'
         commit_user_email: 'riteshrana36@gmail.com'
         
     - name: No changes to commit
       if: steps.verify-changed-files.outputs.changed == 'false'
       run: |
-        echo "No changes detected in README.md - nothing to commit"
+        echo "No changes detected in README.md or MICCAI*.md - nothing to commit"
