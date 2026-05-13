@@ -35,7 +35,7 @@ jobs:
 
     - name: Validate generated README
       run: |
-        python scripts/validate_readme.py
+        python scripts/validate_readme.py --readme MICCAI2026.md
 
     - name: Run tests
       run: |

@@ -75,6 +75,10 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 | Image Registration | 0 | 1000 |
 | Domain Adaptation | 0 | 1000 |
 | Generative Models | 3 | 997 |
+| Fundus Imaging | 0 | 1000 |
+| OCT | 0 | 1000 |
+| OCTA | 0 | 1000 |
+| Ophthalmic Foundation Models | 0 | 1000 |
 | General | 1 | 999 |
 <!-- END COVERAGE_REPORT -->
 

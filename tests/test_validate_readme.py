@@ -33,6 +33,10 @@ def _build_readme(segmentation_body: str, segmentation_count: int = 1) -> str:
 | Image Registration | 0 | 1000 |
 | Domain Adaptation | 0 | 1000 |
 | Generative Models | 0 | 1000 |
+| Fundus Imaging | 0 | 1000 |
+| OCT | 0 | 1000 |
+| OCTA | 0 | 1000 |
+| Ophthalmic Foundation Models | 0 | 1000 |
 | General | 0 | 1000 |
 <!-- END COVERAGE_REPORT -->
 <!-- BEGIN SEGMENTATION_PAPERS -->
@@ -48,6 +52,14 @@ def _build_readme(segmentation_body: str, segmentation_count: int = 1) -> str:
 <!-- END DOMAIN_ADAPTATION_PAPERS -->
 <!-- BEGIN GENERATIVE_MODELS_PAPERS -->
 <!-- END GENERATIVE_MODELS_PAPERS -->
+<!-- BEGIN FUNDUS_IMAGING_PAPERS -->
+<!-- END FUNDUS_IMAGING_PAPERS -->
+<!-- BEGIN OCT_PAPERS -->
+<!-- END OCT_PAPERS -->
+<!-- BEGIN OCTA_PAPERS -->
+<!-- END OCTA_PAPERS -->
+<!-- BEGIN OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
+<!-- END OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
 <!-- BEGIN GENERAL_PAPERS -->
 <!-- END GENERAL_PAPERS -->
 """.strip()
