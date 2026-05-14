@@ -60,25 +60,25 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `9`
-- Fetched arXiv records: `664`
+- Total code-backed papers: `10`
+- Fetched arXiv records: `668`
 - Unique arXiv records: `605`
-- Filtered (non-target): `526`
-- Filtered (track): `34`
-- Filtered (no code links): `36`
+- Filtered (non-target): `522`
+- Filtered (track): `35`
+- Filtered (no code links): `38`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
 | Segmentation | 2 | 998 |
 | Reconstruction | 1 | 999 |
-| Classification | 3 | 997 |
+| Classification | 4 | 996 |
 | Image Registration | 1 | 999 |
 | Domain Adaptation | 0 | 1000 |
-| Generative Models | 4 | 996 |
+| Generative Models | 5 | 995 |
 | Fundus Imaging | 1 | 999 |
 | OCT | 0 | 1000 |
 | OCTA | 0 | 1000 |
-| Ophthalmic Foundation Models | 1 | 999 |
+| Ophthalmic Foundation Models | 2 | 998 |
 | General | 0 | 1000 |
 <!-- END COVERAGE_REPORT -->
 
@@ -104,6 +104,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN CLASSIFICATION_PAPERS -->
+* **[BrainAnytime: Anatomy-Aware Cross-Modal Pretraining for Brain Image Analysis with Arbitrary Modality Availability](https://arxiv.org/abs/2605.13059v1)** - [Code](https://github.com/sdh-lab/brainanytime) (confidence: medium)
 * **[Contrastive Learning under Noisy Temporal Self-Supervision for Colonoscopy Videos](https://arxiv.org/abs/2605.12320v1)** - [Code](https://github.com/lparolari/ntssl) (confidence: medium)
 * **[Wasserstein-Aligned Localisation for VLM-Based Distributional OOD Detection in Medical Imaging](https://arxiv.org/abs/2605.05161v1)** - [Code](https://github.com/bkainz/waldo_miccai26_demo) (confidence: high)
 * **[Exemplar Diffusion: Improving Medical Object Detection with Opportunistic Labels](https://arxiv.org/abs/2603.15267v1)** - [Code](https://github.com/waahlstrand/exemplardiffusion) (confidence: high)
@@ -129,6 +130,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN GENERATIVE_MODELS_PAPERS -->
+* **[BrainAnytime: Anatomy-Aware Cross-Modal Pretraining for Brain Image Analysis with Arbitrary Modality Availability](https://arxiv.org/abs/2605.13059v1)** - [Code](https://github.com/sdh-lab/brainanytime) (confidence: medium)
 * **[ScribbleDose: Scribble-Guided Dose Prediction in Radiotherapy](https://arxiv.org/abs/2605.11555v1)** - [Code](https://github.com/icherishxixixi/scribbledose) (confidence: medium)
 * **[Hierarchical Perfusion Graphs for Tumor Heterogeneity Modeling in Glioma Molecular Subtyping](https://arxiv.org/abs/2605.07156v1)** - [Code](https://github.com/janghana/hiperfgnn) (confidence: high)
 * **[Exemplar Diffusion: Improving Medical Object Detection with Opportunistic Labels](https://arxiv.org/abs/2603.15267v1)** - [Code](https://github.com/waahlstrand/exemplardiffusion) (confidence: high)
@@ -162,6 +164,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
+* **[BrainAnytime: Anatomy-Aware Cross-Modal Pretraining for Brain Image Analysis with Arbitrary Modality Availability](https://arxiv.org/abs/2605.13059v1)** - [Code](https://github.com/sdh-lab/brainanytime) (confidence: medium)
 * **[Clinical Graph-Mediated Distillation for Unpaired MRI-to-CFI Hypertension Prediction](https://arxiv.org/abs/2603.21809v1)** - [Code](https://github.com/dillanimans/cgmd-unpaired-distillation) (confidence: high)
 <!-- END OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
 
@@ -179,6 +182,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-05-13 13:17 北京时间 by GitHub Actions
+**Last Updated**: 2026-05-14 11:28 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
