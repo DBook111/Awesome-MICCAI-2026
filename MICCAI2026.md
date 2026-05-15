@@ -61,11 +61,11 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Discovery mode: `broad`
 - Tracks: `main`
 - Total code-backed papers: `10`
-- Fetched arXiv records: `668`
+- Fetched arXiv records: `669`
 - Unique arXiv records: `605`
-- Filtered (non-target): `522`
+- Filtered (non-target): `521`
 - Filtered (track): `35`
-- Filtered (no code links): `38`
+- Filtered (no code links): `39`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
@@ -88,7 +88,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 
 <!-- BEGIN SEGMENTATION_PAPERS -->
 * **[ScribbleDose: Scribble-Guided Dose Prediction in Radiotherapy](https://arxiv.org/abs/2605.11555v1)** - [Code](https://github.com/icherishxixixi/scribbledose) (confidence: medium)
-* **[XTinyU-Net: Training-Free U-Net Scaling via Initialization-Time Sensitivity](https://arxiv.org/abs/2605.09639v1)** - [Code](https://github.com/alvinkimbowa/nntinyunet) (confidence: medium)
+* **[XTinyU-Net: Training-Free U-Net Scaling via Initialization-Time Sensitivity](https://arxiv.org/abs/2605.09639v2)** - [Code](https://github.com/alvinkimbowa/nntinyunet) (confidence: medium)
 <!-- END SEGMENTATION_PAPERS -->
 
 ## 🔧 Reconstruction
@@ -182,6 +182,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-05-14 11:28 北京时间 by GitHub Actions
+**Last Updated**: 2026-05-15 11:32 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
