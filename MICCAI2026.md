@@ -60,18 +60,18 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `10`
-- Fetched arXiv records: `669`
+- Total code-backed papers: `14`
+- Fetched arXiv records: `678`
 - Unique arXiv records: `605`
-- Filtered (non-target): `521`
-- Filtered (track): `35`
-- Filtered (no code links): `39`
+- Filtered (non-target): `513`
+- Filtered (track): `36`
+- Filtered (no code links): `42`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
-| Segmentation | 2 | 998 |
+| Segmentation | 4 | 996 |
 | Reconstruction | 1 | 999 |
-| Classification | 4 | 996 |
+| Classification | 5 | 995 |
 | Image Registration | 1 | 999 |
 | Domain Adaptation | 0 | 1000 |
 | Generative Models | 5 | 995 |
@@ -79,7 +79,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 | OCT | 0 | 1000 |
 | OCTA | 0 | 1000 |
 | Ophthalmic Foundation Models | 2 | 998 |
-| General | 0 | 1000 |
+| General | 1 | 999 |
 <!-- END COVERAGE_REPORT -->
 
 ## 📊 Segmentation
@@ -87,7 +87,9 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN SEGMENTATION_PAPERS -->
-* **[ScribbleDose: Scribble-Guided Dose Prediction in Radiotherapy](https://arxiv.org/abs/2605.11555v1)** - [Code](https://github.com/icherishxixixi/scribbledose) (confidence: medium)
+* **[R2AoP: Reliable and Robust Angle of Progression Estimation from Intrapartum Ultrasound](https://arxiv.org/abs/2605.21099v1)** - [Code](https://github.com/baiyou1234/r2aop) (confidence: high)
+* **[VoxShield: Protecting 3D Medical Datasets from Unauthorized Training via Frequency-Aware Inter-Slice Disruption](https://arxiv.org/abs/2605.17345v1)** - [Code](https://github.com/kk266299/voxshield) (confidence: medium)
+* **[ScribbleDose: Scribble-Guided Dose Prediction in Radiotherapy](https://arxiv.org/abs/2605.11555v2)** - [Code](https://github.com/icherishxixixi/scribbledose) (confidence: medium)
 * **[XTinyU-Net: Training-Free U-Net Scaling via Initialization-Time Sensitivity](https://arxiv.org/abs/2605.09639v2)** - [Code](https://github.com/alvinkimbowa/nntinyunet) (confidence: medium)
 <!-- END SEGMENTATION_PAPERS -->
 
@@ -104,8 +106,9 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN CLASSIFICATION_PAPERS -->
+* **[VIHD: Visual Intervention-based Hallucination Detection for Medical Visual Question Answering](https://arxiv.org/abs/2605.20772v1)** - [Code](https://github.com/jiayi-chen-au/vihd) (confidence: high)
 * **[BrainAnytime: Anatomy-Aware Cross-Modal Pretraining for Brain Image Analysis with Arbitrary Modality Availability](https://arxiv.org/abs/2605.13059v1)** - [Code](https://github.com/sdh-lab/brainanytime) (confidence: medium)
-* **[Contrastive Learning under Noisy Temporal Self-Supervision for Colonoscopy Videos](https://arxiv.org/abs/2605.12320v1)** - [Code](https://github.com/lparolari/ntssl) (confidence: medium)
+* **[Contrastive Learning under Noisy Temporal Self-Supervision for Colonoscopy Videos](https://arxiv.org/abs/2605.12320v2)** - [Code](https://github.com/lparolari/ntssl) (confidence: medium)
 * **[Wasserstein-Aligned Localisation for VLM-Based Distributional OOD Detection in Medical Imaging](https://arxiv.org/abs/2605.05161v1)** - [Code](https://github.com/bkainz/waldo_miccai26_demo) (confidence: high)
 * **[Exemplar Diffusion: Improving Medical Object Detection with Opportunistic Labels](https://arxiv.org/abs/2603.15267v1)** - [Code](https://github.com/waahlstrand/exemplardiffusion) (confidence: high)
 <!-- END CLASSIFICATION_PAPERS -->
@@ -131,7 +134,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 
 <!-- BEGIN GENERATIVE_MODELS_PAPERS -->
 * **[BrainAnytime: Anatomy-Aware Cross-Modal Pretraining for Brain Image Analysis with Arbitrary Modality Availability](https://arxiv.org/abs/2605.13059v1)** - [Code](https://github.com/sdh-lab/brainanytime) (confidence: medium)
-* **[ScribbleDose: Scribble-Guided Dose Prediction in Radiotherapy](https://arxiv.org/abs/2605.11555v1)** - [Code](https://github.com/icherishxixixi/scribbledose) (confidence: medium)
+* **[ScribbleDose: Scribble-Guided Dose Prediction in Radiotherapy](https://arxiv.org/abs/2605.11555v2)** - [Code](https://github.com/icherishxixixi/scribbledose) (confidence: medium)
 * **[Hierarchical Perfusion Graphs for Tumor Heterogeneity Modeling in Glioma Molecular Subtyping](https://arxiv.org/abs/2605.07156v1)** - [Code](https://github.com/janghana/hiperfgnn) (confidence: high)
 * **[Exemplar Diffusion: Improving Medical Object Detection with Opportunistic Labels](https://arxiv.org/abs/2603.15267v1)** - [Code](https://github.com/waahlstrand/exemplardiffusion) (confidence: high)
 * **[EchoLVFM: One-Step Video Generation via Latent Flow Matching for Echocardiogram Synthesis](https://arxiv.org/abs/2603.13967v1)** - [Code](https://github.com/engemmanuel/echolvfm) (confidence: high)
@@ -173,6 +176,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN GENERAL_PAPERS -->
+* **[Network-Aware Bilinear Tokenization for Brain Functional Connectivity Representation Learning](https://arxiv.org/abs/2605.14048v3)** - [Code](https://github.com/leomlck/nerve) (confidence: medium)
 <!-- END GENERAL_PAPERS -->
 
 ---
@@ -182,6 +186,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-05-17 11:28 北京时间 by GitHub Actions
+**Last Updated**: 2026-05-21 11:42 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
