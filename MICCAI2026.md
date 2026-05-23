@@ -60,17 +60,17 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `14`
-- Fetched arXiv records: `678`
+- Total code-backed papers: `15`
+- Fetched arXiv records: `681`
 - Unique arXiv records: `605`
-- Filtered (non-target): `513`
-- Filtered (track): `36`
-- Filtered (no code links): `42`
+- Filtered (non-target): `509`
+- Filtered (track): `37`
+- Filtered (no code links): `44`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
-| Segmentation | 4 | 996 |
-| Reconstruction | 1 | 999 |
+| Segmentation | 5 | 995 |
+| Reconstruction | 2 | 998 |
 | Classification | 5 | 995 |
 | Image Registration | 1 | 999 |
 | Domain Adaptation | 0 | 1000 |
@@ -78,7 +78,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 | Fundus Imaging | 1 | 999 |
 | OCT | 0 | 1000 |
 | OCTA | 0 | 1000 |
-| Ophthalmic Foundation Models | 2 | 998 |
+| Ophthalmic Foundation Models | 3 | 997 |
 | General | 1 | 999 |
 <!-- END COVERAGE_REPORT -->
 
@@ -91,6 +91,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[VoxShield: Protecting 3D Medical Datasets from Unauthorized Training via Frequency-Aware Inter-Slice Disruption](https://arxiv.org/abs/2605.17345v1)** - [Code](https://github.com/kk266299/voxshield) (confidence: medium)
 * **[ScribbleDose: Scribble-Guided Dose Prediction in Radiotherapy](https://arxiv.org/abs/2605.11555v2)** - [Code](https://github.com/icherishxixixi/scribbledose) (confidence: medium)
 * **[XTinyU-Net: Training-Free U-Net Scaling via Initialization-Time Sensitivity](https://arxiv.org/abs/2605.09639v2)** - [Code](https://github.com/alvinkimbowa/nntinyunet) (confidence: medium)
+* **[Defining Robust Ultrasound Quality Metrics via an Ultrasound Foundation Model](https://arxiv.org/abs/2604.19512v2)** - [Code](https://github.com/sextant-fable/us-metrics) (confidence: medium)
 <!-- END SEGMENTATION_PAPERS -->
 
 ## 🔧 Reconstruction
@@ -98,6 +99,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN RECONSTRUCTION_PAPERS -->
+* **[Defining Robust Ultrasound Quality Metrics via an Ultrasound Foundation Model](https://arxiv.org/abs/2604.19512v2)** - [Code](https://github.com/sextant-fable/us-metrics) (confidence: medium)
 * **[EchoLVFM: One-Step Video Generation via Latent Flow Matching for Echocardiogram Synthesis](https://arxiv.org/abs/2603.13967v1)** - [Code](https://github.com/engemmanuel/echolvfm) (confidence: medium)
 <!-- END RECONSTRUCTION_PAPERS -->
 
@@ -168,6 +170,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 
 <!-- BEGIN OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
 * **[BrainAnytime: Anatomy-Aware Cross-Modal Pretraining for Brain Image Analysis with Arbitrary Modality Availability](https://arxiv.org/abs/2605.13059v1)** - [Code](https://github.com/sdh-lab/brainanytime) (confidence: medium)
+* **[Defining Robust Ultrasound Quality Metrics via an Ultrasound Foundation Model](https://arxiv.org/abs/2604.19512v2)** - [Code](https://github.com/sextant-fable/us-metrics) (confidence: high)
 * **[Clinical Graph-Mediated Distillation for Unpaired MRI-to-CFI Hypertension Prediction](https://arxiv.org/abs/2603.21809v1)** - [Code](https://github.com/dillanimans/cgmd-unpaired-distillation) (confidence: high)
 <!-- END OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
 
@@ -186,6 +189,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-05-21 11:42 北京时间 by GitHub Actions
+**Last Updated**: 2026-05-23 10:56 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
