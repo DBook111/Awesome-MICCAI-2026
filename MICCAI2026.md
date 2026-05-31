@@ -60,26 +60,26 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `22`
-- Fetched arXiv records: `698`
-- Unique arXiv records: `604`
-- Filtered (non-target): `492`
-- Filtered (track): `38`
-- Filtered (no code links): `52`
+- Total code-backed papers: `24`
+- Fetched arXiv records: `703`
+- Unique arXiv records: `605`
+- Filtered (non-target): `489`
+- Filtered (track): `37`
+- Filtered (no code links): `55`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
 | Segmentation | 9 | 991 |
 | Reconstruction | 3 | 997 |
-| Classification | 6 | 994 |
-| Image Registration | 4 | 996 |
+| Classification | 7 | 993 |
+| Image Registration | 5 | 995 |
 | Domain Adaptation | 2 | 998 |
 | Generative Models | 6 | 994 |
 | Fundus Imaging | 1 | 999 |
 | OCT | 0 | 1000 |
 | OCTA | 0 | 1000 |
 | Ophthalmic Foundation Models | 4 | 996 |
-| General | 2 | 998 |
+| General | 3 | 997 |
 <!-- END COVERAGE_REPORT -->
 
 ## 📊 Segmentation
@@ -113,6 +113,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN CLASSIFICATION_PAPERS -->
+* **[Genetically Aligned Patient Representations Improve Hematological Diagnosis](https://arxiv.org/abs/2605.29980v1)** - [Code](https://github.com/marrlab/genbloom) (confidence: medium)
 * **[Attenuation-Resilient Alternating Optimization for Laparoscopic Liver Landmark Detection](https://arxiv.org/abs/2605.26630v1)** - [Code](https://github.com/hyperiondk115/a2onet) (confidence: high)
 * **[VIHD: Visual Intervention-based Hallucination Detection for Medical Visual Question Answering](https://arxiv.org/abs/2605.20772v2)** - [Code](https://github.com/jiayi-chen-au/vihd) (confidence: high)
 * **[BrainAnytime: Anatomy-Aware Cross-Modal Pretraining for Brain Image Analysis with Arbitrary Modality Availability](https://arxiv.org/abs/2605.13059v1)** - [Code](https://github.com/sdh-lab/brainanytime) (confidence: medium)
@@ -126,6 +127,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN IMAGE_REGISTRATION_PAPERS -->
+* **[Genetically Aligned Patient Representations Improve Hematological Diagnosis](https://arxiv.org/abs/2605.29980v1)** - [Code](https://github.com/marrlab/genbloom) (confidence: medium)
 * **[Evi-Steer: Learning to Steer Biomedical Vision-Language Models through Efficient and Generalizable Evidential Tuning](https://arxiv.org/abs/2605.26292v1)** - [Code](https://github.com/healthx-lab/evi-steer) (confidence: medium)
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v1)** - [Code](https://github.com/zhcz328/anaus) (confidence: medium)
 * **[Subspace-Guided Semantic and Topological Invariant Registration for Annotation-Free Ultrasound Plane Quality Control](https://arxiv.org/abs/2605.25396v1)** - [Code](https://github.com/zhcz328/striq) (confidence: high)
@@ -192,6 +194,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN GENERAL_PAPERS -->
+* **[BCER Agent: Reliable Long-Horizon MRI Workflow Execution via Compilation, Artifact Binding, and Bounded Local Recovery](https://arxiv.org/abs/2605.29163v1)** - [Code](https://github.com/albertlongzi/bcer) (confidence: medium)
 * **[BioFact-MoE: Biologically Factorized Mixture of Experts for Vision-Language Prognostic Modeling in Hepatocellular Carcinoma](https://arxiv.org/abs/2605.26376v1)** - [Code](https://github.com/jy-639/biofact-moe) (confidence: medium)
 * **[Network-Aware Bilinear Tokenization for Brain Functional Connectivity Representation Learning](https://arxiv.org/abs/2605.14048v3)** - [Code](https://github.com/leomlck/nerve) (confidence: medium)
 <!-- END GENERAL_PAPERS -->
@@ -203,6 +206,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-05-28 11:37 北京时间 by GitHub Actions
+**Last Updated**: 2026-05-31 11:56 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
