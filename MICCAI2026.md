@@ -61,11 +61,11 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Discovery mode: `broad`
 - Tracks: `main`
 - Total code-backed papers: `24`
-- Fetched arXiv records: `703`
+- Fetched arXiv records: `706`
 - Unique arXiv records: `605`
-- Filtered (non-target): `489`
+- Filtered (non-target): `486`
 - Filtered (track): `37`
-- Filtered (no code links): `55`
+- Filtered (no code links): `58`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
@@ -128,7 +128,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 
 <!-- BEGIN IMAGE_REGISTRATION_PAPERS -->
 * **[Genetically Aligned Patient Representations Improve Hematological Diagnosis](https://arxiv.org/abs/2605.29980v1)** - [Code](https://github.com/marrlab/genbloom) (confidence: medium)
-* **[Evi-Steer: Learning to Steer Biomedical Vision-Language Models through Efficient and Generalizable Evidential Tuning](https://arxiv.org/abs/2605.26292v1)** - [Code](https://github.com/healthx-lab/evi-steer) (confidence: medium)
+* **[Evi-Steer: Learning to Steer Biomedical Vision-Language Models through Efficient and Generalizable Evidential Tuning](https://arxiv.org/abs/2605.26292v2)** - [Code](https://github.com/healthx-lab/evi-steer) (confidence: medium)
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v1)** - [Code](https://github.com/zhcz328/anaus) (confidence: medium)
 * **[Subspace-Guided Semantic and Topological Invariant Registration for Annotation-Free Ultrasound Plane Quality Control](https://arxiv.org/abs/2605.25396v1)** - [Code](https://github.com/zhcz328/striq) (confidence: high)
 * **[EchoTracker2: Enhancing Myocardial Point Tracking by Modeling Local Motion](https://arxiv.org/abs/2605.12140v1)** - [Code](https://github.com/riponazad/ptecho) (confidence: medium)
@@ -139,7 +139,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN DOMAIN_ADAPTATION_PAPERS -->
-* **[Evi-Steer: Learning to Steer Biomedical Vision-Language Models through Efficient and Generalizable Evidential Tuning](https://arxiv.org/abs/2605.26292v1)** - [Code](https://github.com/healthx-lab/evi-steer) (confidence: high)
+* **[Evi-Steer: Learning to Steer Biomedical Vision-Language Models through Efficient and Generalizable Evidential Tuning](https://arxiv.org/abs/2605.26292v2)** - [Code](https://github.com/healthx-lab/evi-steer) (confidence: high)
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v1)** - [Code](https://github.com/zhcz328/anaus) (confidence: medium)
 <!-- END DOMAIN_ADAPTATION_PAPERS -->
 
@@ -206,6 +206,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-06-01 12:06 北京时间 by GitHub Actions
+**Last Updated**: 2026-06-02 11:59 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
