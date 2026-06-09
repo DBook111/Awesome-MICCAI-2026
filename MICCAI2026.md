@@ -60,21 +60,21 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `25`
-- Fetched arXiv records: `710`
+- Total code-backed papers: `26`
+- Fetched arXiv records: `712`
 - Unique arXiv records: `605`
-- Filtered (non-target): `482`
-- Filtered (track): `37`
-- Filtered (no code links): `61`
+- Filtered (non-target): `481`
+- Filtered (track): `36`
+- Filtered (no code links): `62`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
 | Segmentation | 9 | 991 |
 | Reconstruction | 3 | 997 |
 | Classification | 7 | 993 |
-| Image Registration | 5 | 995 |
+| Image Registration | 6 | 994 |
 | Domain Adaptation | 2 | 998 |
-| Generative Models | 6 | 994 |
+| Generative Models | 7 | 993 |
 | Fundus Imaging | 1 | 999 |
 | OCT | 0 | 1000 |
 | OCTA | 0 | 1000 |
@@ -127,6 +127,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN IMAGE_REGISTRATION_PAPERS -->
+* **[WaveDiT: Distribution-Aware Wavelet Flow Matching for Efficient 3D Brain MRI Synthesis](https://arxiv.org/abs/2606.08670v1)** - [Code](https://github.com/sisinflab/wavedit) (confidence: medium)
 * **[Genetically Aligned Patient Representations Improve Hematological Diagnosis](https://arxiv.org/abs/2605.29980v1)** - [Code](https://github.com/marrlab/genbloom) (confidence: medium)
 * **[Evi-Steer: Learning to Steer Biomedical Vision-Language Models through Efficient and Generalizable Evidential Tuning](https://arxiv.org/abs/2605.26292v2)** - [Code](https://github.com/healthx-lab/evi-steer) (confidence: medium)
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v3)** - [Code](https://github.com/zhcz328/anaus) (confidence: medium)
@@ -148,6 +149,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN GENERATIVE_MODELS_PAPERS -->
+* **[WaveDiT: Distribution-Aware Wavelet Flow Matching for Efficient 3D Brain MRI Synthesis](https://arxiv.org/abs/2606.08670v1)** - [Code](https://github.com/sisinflab/wavedit) (confidence: high)
 * **[BrainAnytime: Anatomy-Aware Cross-Modal Pretraining for Brain Image Analysis with Arbitrary Modality Availability](https://arxiv.org/abs/2605.13059v1)** - [Code](https://github.com/sdh-lab/brainanytime) (confidence: medium)
 * **[ScribbleDose: Scribble-Guided Dose Prediction in Radiotherapy](https://arxiv.org/abs/2605.11555v2)** - [Code](https://github.com/icherishxixixi/scribbledose) (confidence: medium)
 * **[Hierarchical Perfusion Graphs for Tumor Heterogeneity Modeling in Glioma Molecular Subtyping](https://arxiv.org/abs/2605.07156v1)** - [Code](https://github.com/janghana/hiperfgnn) (confidence: high)
@@ -207,6 +209,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-06-07 11:57 北京时间 by GitHub Actions
+**Last Updated**: 2026-06-09 11:32 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
