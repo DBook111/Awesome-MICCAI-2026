@@ -61,11 +61,11 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Discovery mode: `broad`
 - Tracks: `main`
 - Total code-backed papers: `26`
-- Fetched arXiv records: `712`
+- Fetched arXiv records: `713`
 - Unique arXiv records: `605`
 - Filtered (non-target): `481`
-- Filtered (track): `36`
-- Filtered (no code links): `62`
+- Filtered (track): `35`
+- Filtered (no code links): `63`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
@@ -209,6 +209,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-06-09 11:32 北京时间 by GitHub Actions
+**Last Updated**: 2026-06-10 11:43 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
