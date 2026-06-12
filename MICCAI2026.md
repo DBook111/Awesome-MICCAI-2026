@@ -60,10 +60,10 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `26`
-- Fetched arXiv records: `713`
+- Total code-backed papers: `28`
+- Fetched arXiv records: `715`
 - Unique arXiv records: `605`
-- Filtered (non-target): `481`
+- Filtered (non-target): `479`
 - Filtered (track): `35`
 - Filtered (no code links): `63`
 
@@ -71,7 +71,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 |---|---:|---:|
 | Segmentation | 9 | 991 |
 | Reconstruction | 3 | 997 |
-| Classification | 7 | 993 |
+| Classification | 8 | 992 |
 | Image Registration | 6 | 994 |
 | Domain Adaptation | 2 | 998 |
 | Generative Models | 7 | 993 |
@@ -79,7 +79,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 | OCT | 0 | 1000 |
 | OCTA | 0 | 1000 |
 | Ophthalmic Foundation Models | 4 | 996 |
-| General | 4 | 996 |
+| General | 5 | 995 |
 <!-- END COVERAGE_REPORT -->
 
 ## 📊 Segmentation
@@ -120,6 +120,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[Contrastive Learning under Noisy Temporal Self-Supervision for Colonoscopy Videos](https://arxiv.org/abs/2605.12320v2)** - [Code](https://github.com/lparolari/ntssl) (confidence: medium)
 * **[Wasserstein-Aligned Localisation for VLM-Based Distributional OOD Detection in Medical Imaging](https://arxiv.org/abs/2605.05161v1)** - [Code](https://github.com/bkainz/waldo_miccai26_demo) (confidence: high)
 * **[Exemplar Diffusion: Improving Medical Object Detection with Opportunistic Labels](https://arxiv.org/abs/2603.15267v1)** - [Code](https://github.com/waahlstrand/exemplardiffusion) (confidence: high)
+* **[Echo2ECG: Enhancing ECG Representations with Cardiac Morphology from Multi-View Echos](https://arxiv.org/abs/2603.08505v2)** - [Code](https://github.com/michelleespranita/echo2ecg) (confidence: medium)
 <!-- END CLASSIFICATION_PAPERS -->
 
 ## 🔄 Image Registration
@@ -196,6 +197,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN GENERAL_PAPERS -->
+* **[AGE-MIL: Anchor-Guided Evidence Learning for Patient-Level Prediction](https://arxiv.org/abs/2606.12126v1)** - [Code](https://github.com/wodeniua/age-mil) (confidence: medium)
 * **[StrokeTimer: Robust Representation Learning for Ischemic Stroke Onset-Time Estimation from Non-contrast CT](https://arxiv.org/abs/2606.04722v1)** - [Code](https://github.com/brainvas/stroketimer) (confidence: medium)
 * **[BCER Agent: Reliable Long-Horizon MRI Workflow Execution via Compilation, Artifact Binding, and Bounded Local Recovery](https://arxiv.org/abs/2605.29163v1)** - [Code](https://github.com/albertlongzi/bcer) (confidence: medium)
 * **[BioFact-MoE: Biologically Factorized Mixture of Experts for Vision-Language Prognostic Modeling in Hepatocellular Carcinoma](https://arxiv.org/abs/2605.26376v1)** - [Code](https://github.com/jy-639/biofact-moe) (confidence: medium)
@@ -209,6 +211,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-06-10 11:43 北京时间 by GitHub Actions
+**Last Updated**: 2026-06-12 11:59 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
