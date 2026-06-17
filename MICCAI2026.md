@@ -60,25 +60,25 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `34`
-- Fetched arXiv records: `727`
+- Total code-backed papers: `36`
+- Fetched arXiv records: `730`
 - Unique arXiv records: `605`
-- Filtered (non-target): `469`
+- Filtered (non-target): `466`
 - Filtered (track): `34`
-- Filtered (no code links): `68`
+- Filtered (no code links): `69`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
-| Segmentation | 11 | 989 |
+| Segmentation | 12 | 988 |
 | Reconstruction | 5 | 995 |
 | Classification | 11 | 989 |
 | Image Registration | 7 | 993 |
 | Domain Adaptation | 2 | 998 |
 | Generative Models | 9 | 991 |
-| Fundus Imaging | 2 | 998 |
-| OCT | 1 | 999 |
+| Fundus Imaging | 3 | 997 |
+| OCT | 2 | 998 |
 | OCTA | 0 | 1000 |
-| Ophthalmic Foundation Models | 6 | 994 |
+| Ophthalmic Foundation Models | 7 | 993 |
 | General | 5 | 995 |
 <!-- END COVERAGE_REPORT -->
 
@@ -87,6 +87,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN SEGMENTATION_PAPERS -->
+* **[Beyond Visual Cues: CoT-Enhanced Reasoning for Semi-supervised Medical Image Segmentation](https://arxiv.org/abs/2606.17958v1)** - [Code](https://github.com/cymasuna/cers) (confidence: high)
 * **[Attention-Based Prototype Calibration for Multi-Rater Few-Shot Medical Image Segmentation](https://arxiv.org/abs/2606.16325v1)** - [Code](https://github.com/truong2710-cyber/japc) (confidence: high)
 * **[Mutual Distillation of Dual-Foundation Models for Semi-Supervised PET/CT Segmentation](https://arxiv.org/abs/2606.15611v1)** - [Code](https://github.com/wu-beining/muduo) (confidence: high)
 * **[Attenuation-Resilient Alternating Optimization for Laparoscopic Liver Landmark Detection](https://arxiv.org/abs/2605.26630v1)** - [Code](https://github.com/hyperiondk115/a2onet) (confidence: medium)
@@ -175,6 +176,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 
 <!-- BEGIN FUNDUS_IMAGING_PAPERS -->
 * **[Propagating Structural Guidance: Synthesizing Fluorescein Angiography from Fundus Images and Sparse OCT Scans](https://arxiv.org/abs/2606.16234v1)** - [Code](https://github.com/while-plus/oct-guide-ffa-syn) (confidence: high)
+* **[Response-Aware Multimodal Learning for Post-Treatment Visual Acuity Forecasting](https://arxiv.org/abs/2606.00588v2)** - [Code](https://github.com/nguyenpbui/reva) (confidence: medium)
 * **[Clinical Graph-Mediated Distillation for Unpaired MRI-to-CFI Hypertension Prediction](https://arxiv.org/abs/2603.21809v1)** - [Code](https://github.com/dillanimans/cgmd-unpaired-distillation) (confidence: high)
 <!-- END FUNDUS_IMAGING_PAPERS -->
 
@@ -184,6 +186,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 
 <!-- BEGIN OCT_PAPERS -->
 * **[Propagating Structural Guidance: Synthesizing Fluorescein Angiography from Fundus Images and Sparse OCT Scans](https://arxiv.org/abs/2606.16234v1)** - [Code](https://github.com/while-plus/oct-guide-ffa-syn) (confidence: high)
+* **[Response-Aware Multimodal Learning for Post-Treatment Visual Acuity Forecasting](https://arxiv.org/abs/2606.00588v2)** - [Code](https://github.com/nguyenpbui/reva) (confidence: medium)
 <!-- END OCT_PAPERS -->
 
 ## 🩸 OCTA
@@ -200,6 +203,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 <!-- BEGIN OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
 * **[Propagating Structural Guidance: Synthesizing Fluorescein Angiography from Fundus Images and Sparse OCT Scans](https://arxiv.org/abs/2606.16234v1)** - [Code](https://github.com/while-plus/oct-guide-ffa-syn) (confidence: high)
 * **[Mutual Distillation of Dual-Foundation Models for Semi-Supervised PET/CT Segmentation](https://arxiv.org/abs/2606.15611v1)** - [Code](https://github.com/wu-beining/muduo) (confidence: high)
+* **[Response-Aware Multimodal Learning for Post-Treatment Visual Acuity Forecasting](https://arxiv.org/abs/2606.00588v2)** - [Code](https://github.com/nguyenpbui/reva) (confidence: medium)
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v3)** - [Code](https://github.com/zhcz328/anaus) (confidence: high)
 * **[BrainAnytime: Anatomy-Aware Cross-Modal Pretraining for Brain Image Analysis with Arbitrary Modality Availability](https://arxiv.org/abs/2605.13059v1)** - [Code](https://github.com/sdh-lab/brainanytime) (confidence: medium)
 * **[Defining Robust Ultrasound Quality Metrics via an Ultrasound Foundation Model](https://arxiv.org/abs/2604.19512v2)** - [Code](https://github.com/sextant-fable/us-metrics) (confidence: high)
@@ -225,6 +229,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-06-16 12:09 北京时间 by GitHub Actions
+**Last Updated**: 2026-06-17 12:15 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
