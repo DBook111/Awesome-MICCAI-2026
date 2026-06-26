@@ -60,26 +60,26 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `52`
-- Fetched arXiv records: `755`
-- Unique arXiv records: `605`
-- Filtered (non-target): `447`
-- Filtered (track): `30`
-- Filtered (no code links): `76`
+- Total code-backed papers: `59`
+- Fetched arXiv records: `768`
+- Unique arXiv records: `606`
+- Filtered (non-target): `440`
+- Filtered (track): `28`
+- Filtered (no code links): `79`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
 | Segmentation | 18 | 982 |
 | Reconstruction | 9 | 991 |
-| Classification | 20 | 980 |
-| Image Registration | 10 | 990 |
+| Classification | 24 | 976 |
+| Image Registration | 11 | 989 |
 | Domain Adaptation | 3 | 997 |
-| Generative Models | 12 | 988 |
-| Fundus Imaging | 5 | 995 |
+| Generative Models | 14 | 986 |
+| Fundus Imaging | 6 | 994 |
 | OCT | 3 | 997 |
 | OCTA | 0 | 1000 |
-| Ophthalmic Foundation Models | 11 | 989 |
-| General | 6 | 994 |
+| Ophthalmic Foundation Models | 12 | 988 |
+| General | 8 | 992 |
 <!-- END COVERAGE_REPORT -->
 
 ## 📊 Segmentation
@@ -87,6 +87,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN SEGMENTATION_PAPERS -->
+* **[Mask to Concept: Auto-Promptable SAM3 via Efficient Test-Time Concept Embedding Search for Few-Shot Annotation](https://arxiv.org/abs/2606.26711v1)** - [Code](https://github.com/huster-hq/m2c) (confidence: high)
 * **[Interpretable Probabilistic Medical Image Segmentation via Gaussian Process with Explicit Modelling of Annotation Bias and Variability](https://arxiv.org/abs/2606.23177v1)** - [Code](https://github.com/qili111/gps-var) (confidence: high)
 * **[Surgical Anatomy Recognition with Context Learning using Foundation Representations](https://arxiv.org/abs/2606.22124v1)** - [Code](https://github.com/timjaspers0801/atlas) (confidence: medium)
 * **[Rethinking the Adaptation of Vision Foundation Models for Efficient Cell Segmentation](https://arxiv.org/abs/2606.21913v1)** - [Code](https://github.com/xq141839/efficell-seg) (confidence: high)
@@ -94,7 +95,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[CSWinUNETR: Segmentation of Thin Anatomical Structures in Medical Images](https://arxiv.org/abs/2606.19824v1)** - [Code](https://github.com/labhai/cswinunetr) (confidence: high)
 * **[Quantification of Uncertainty with Adversarial Models in Medical Image Segmentation](https://arxiv.org/abs/2606.18860v1)** - [Code](https://github.com/hanajebril/quam_sm) (confidence: high)
 * **[Beyond Visual Cues: CoT-Enhanced Reasoning for Semi-supervised Medical Image Segmentation](https://arxiv.org/abs/2606.17958v1)** - [Code](https://github.com/cymasuna/cers) (confidence: high)
-* **[Attention-Based Prototype Calibration for Multi-Rater Few-Shot Medical Image Segmentation](https://arxiv.org/abs/2606.16325v1)** - [Code](https://github.com/truong2710-cyber/japc) (confidence: high)
 * **[Mutual Distillation of Dual-Foundation Models for Semi-Supervised PET/CT Segmentation](https://arxiv.org/abs/2606.15611v1)** - [Code](https://github.com/wu-beining/muduo) (confidence: high)
 * **[Attenuation-Resilient Alternating Optimization for Laparoscopic Liver Landmark Detection](https://arxiv.org/abs/2605.26630v1)** - [Code](https://github.com/hyperiondk115/a2onet) (confidence: medium)
 * **[Detail Consistent Stage-Wise Distillation for Efficient 3D MRI Segmentation](https://arxiv.org/abs/2605.26382v1)** - [Code](https://github.com/clinicaalpha/dcd-3d-medseg) (confidence: high)
@@ -115,7 +115,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[NeuroSonic: Conditional Flow Matching for EEG-to-Speech Reconstruction](https://arxiv.org/abs/2606.24087v1)** - [Code](https://github.com/y-research-sbu/neurosonic) (confidence: high)
 * **[MaRS: Robust Out-of-Distribution Detection via Mahalanobis Residual Scoring](https://arxiv.org/abs/2606.22649v1)** - [Code](https://github.com/francescodisalvo05/mars) (confidence: medium)
 * **[When, Where, and How: Adaptive Binning for Tabular Self-Supervised Learning](https://arxiv.org/abs/2606.19827v1)** - [Code](https://github.com/labhai/adaptive-binning) (confidence: medium)
-* **[Test-Time Adaptation in Optical Coherence Tomography Using Trajectory-Aligned Time-Independent Flow](https://arxiv.org/abs/2606.18876v1)** - [Code](https://github.com/veit21/tta-flow) (confidence: medium)
+* **[Test-Time Adaptation in Optical Coherence Tomography Using Trajectory-Aligned Time-Independent Flow](https://arxiv.org/abs/2606.18876v2)** - [Code](https://github.com/veit21/tta-flow) (confidence: medium)
 * **[Propagating Structural Guidance: Synthesizing Fluorescein Angiography from Fundus Images and Sparse OCT Scans](https://arxiv.org/abs/2606.16234v1)** - [Code](https://github.com/while-plus/oct-guide-ffa-syn) (confidence: medium)
 * **[Learning Directional Semantic Transitions for Longitudinal Chest X-ray Analysis](https://arxiv.org/abs/2606.15938v1)** - [Code](https://github.com/rpidial/protrans) (confidence: medium)
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v3)** - [Code](https://github.com/zhcz328/anaus) (confidence: medium)
@@ -128,6 +128,9 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN CLASSIFICATION_PAPERS -->
+* **[Pulmonary Embolism Risk Stratification from CTPA and Medical Records: Vascular Graphs Are Not All You Need](https://arxiv.org/abs/2606.25956v1)** - [Code](https://github.com/creatis-myriad/genesis) (confidence: medium)
+* **[FunPiQ: A New Benchmark for Pixel-Level Quality Assessment in Fundus Images](https://arxiv.org/abs/2606.25915v1)** - [Code](https://github.com/penway/funpiq) (confidence: high)
+* **[Beyond Visual Forensics: Auditing Multimodal Robustness for Synthetic Medical Image Detection](https://arxiv.org/abs/2606.25375v1)** - [Code](https://github.com/chiuhaohao/beyond-visual-forensics) (confidence: high)
 * **[From Point Estimates to Distributions: GMM Pooling for MIL in Preterm Birth Prediction](https://arxiv.org/abs/2606.23005v1)** - [Code](https://github.com/hussainalasmawi/gmm_pooling) (confidence: medium)
 * **[Evo-RAD: Navigating Rare Retinal Disease Diagnosis via Self-Evolving Agentic Retrieval](https://arxiv.org/abs/2606.22955v1)** - [Code](https://github.com/sdh-lab/evo-rad) (confidence: medium)
 * **[MaRS: Robust Out-of-Distribution Detection via Mahalanobis Residual Scoring](https://arxiv.org/abs/2606.22649v1)** - [Code](https://github.com/francescodisalvo05/mars) (confidence: high)
@@ -147,6 +150,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[Contrastive Learning under Noisy Temporal Self-Supervision for Colonoscopy Videos](https://arxiv.org/abs/2605.12320v2)** - [Code](https://github.com/lparolari/ntssl) (confidence: medium)
 * **[Wasserstein-Aligned Localisation for VLM-Based Distributional OOD Detection in Medical Imaging](https://arxiv.org/abs/2605.05161v2)** - [Code](https://github.com/bkainz/waldo_miccai26_demo) (confidence: high)
 * **[Exemplar Diffusion: Improving Medical Object Detection with Opportunistic Labels](https://arxiv.org/abs/2603.15267v1)** - [Code](https://github.com/waahlstrand/exemplardiffusion) (confidence: high)
+* **[Evidential Perfusion Physics-Informed Neural Networks with Residual Uncertainty Quantification](https://arxiv.org/abs/2603.09359v2)** - [Code](https://github.com/jhlee0619/eppinn) (confidence: medium)
 * **[Echo2ECG: Enhancing ECG Representations with Cardiac Morphology from Multi-View Echos](https://arxiv.org/abs/2603.08505v2)** - [Code](https://github.com/michelleespranita/echo2ecg) (confidence: medium)
 <!-- END CLASSIFICATION_PAPERS -->
 
@@ -165,6 +169,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v3)** - [Code](https://github.com/zhcz328/anaus) (confidence: medium)
 * **[Subspace-Guided Semantic and Topological Invariant Registration for Annotation-Free Ultrasound Plane Quality Control](https://arxiv.org/abs/2605.25396v1)** - [Code](https://github.com/zhcz328/striq) (confidence: high)
 * **[EchoTracker2: Enhancing Myocardial Point Tracking by Modeling Local Motion](https://arxiv.org/abs/2605.12140v1)** - [Code](https://github.com/riponazad/ptecho) (confidence: medium)
+* **[Improving Factuality of 3D Brain MRI Report Generation with Paired Image-domain Retrieval and Text-domain Augmentation](https://arxiv.org/abs/2411.15490v2)** - [Code](https://github.com/jhlee0619/pirta) (confidence: medium)
 <!-- END IMAGE_REGISTRATION_PAPERS -->
 
 ## 🔀 Domain Adaptation
@@ -182,6 +187,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN GENERATIVE_MODELS_PAPERS -->
+* **[Beyond Visual Forensics: Auditing Multimodal Robustness for Synthetic Medical Image Detection](https://arxiv.org/abs/2606.25375v1)** - [Code](https://github.com/chiuhaohao/beyond-visual-forensics) (confidence: medium)
 * **[NeuroSonic: Conditional Flow Matching for EEG-to-Speech Reconstruction](https://arxiv.org/abs/2606.24087v1)** - [Code](https://github.com/y-research-sbu/neurosonic) (confidence: high)
 * **[MaRS: Robust Out-of-Distribution Detection via Mahalanobis Residual Scoring](https://arxiv.org/abs/2606.22649v1)** - [Code](https://github.com/francescodisalvo05/mars) (confidence: medium)
 * **[One-Shot Data Selection for Medical Image Classification via Graph Coverage](https://arxiv.org/abs/2606.22002v1)** - [Code](https://github.com/zahiriddin-rustamov/graph-coverage-selection) (confidence: medium)
@@ -194,6 +200,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[Exemplar Diffusion: Improving Medical Object Detection with Opportunistic Labels](https://arxiv.org/abs/2603.15267v1)** - [Code](https://github.com/waahlstrand/exemplardiffusion) (confidence: high)
 * **[EchoLVFM: One-Step Video Generation via Latent Flow Matching for Echocardiogram Synthesis](https://arxiv.org/abs/2603.13967v1)** - [Code](https://github.com/engemmanuel/echolvfm) (confidence: high)
 * **[DUCX: Decomposing Unfairness in Tool-Using Chest X-ray Agents](https://arxiv.org/abs/2603.00777v2)** - [Code](https://github.com/nanboy-ronan/duck) (confidence: medium)
+* **[Improving Factuality of 3D Brain MRI Report Generation with Paired Image-domain Retrieval and Text-domain Augmentation](https://arxiv.org/abs/2411.15490v2)** - [Code](https://github.com/jhlee0619/pirta) (confidence: high)
 <!-- END GENERATIVE_MODELS_PAPERS -->
 
 ## 👁️ Fundus Imaging
@@ -201,9 +208,10 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN FUNDUS_IMAGING_PAPERS -->
+* **[FunPiQ: A New Benchmark for Pixel-Level Quality Assessment in Fundus Images](https://arxiv.org/abs/2606.25915v1)** - [Code](https://github.com/penway/funpiq) (confidence: high)
 * **[Evo-RAD: Navigating Rare Retinal Disease Diagnosis via Self-Evolving Agentic Retrieval](https://arxiv.org/abs/2606.22955v1)** - [Code](https://github.com/sdh-lab/evo-rad) (confidence: high)
 * **[CSWinUNETR: Segmentation of Thin Anatomical Structures in Medical Images](https://arxiv.org/abs/2606.19824v1)** - [Code](https://github.com/labhai/cswinunetr) (confidence: high)
-* **[Test-Time Adaptation in Optical Coherence Tomography Using Trajectory-Aligned Time-Independent Flow](https://arxiv.org/abs/2606.18876v1)** - [Code](https://github.com/veit21/tta-flow) (confidence: high)
+* **[Test-Time Adaptation in Optical Coherence Tomography Using Trajectory-Aligned Time-Independent Flow](https://arxiv.org/abs/2606.18876v2)** - [Code](https://github.com/veit21/tta-flow) (confidence: high)
 * **[Propagating Structural Guidance: Synthesizing Fluorescein Angiography from Fundus Images and Sparse OCT Scans](https://arxiv.org/abs/2606.16234v1)** - [Code](https://github.com/while-plus/oct-guide-ffa-syn) (confidence: high)
 * **[Clinical Graph-Mediated Distillation for Unpaired MRI-to-CFI Hypertension Prediction](https://arxiv.org/abs/2603.21809v1)** - [Code](https://github.com/dillanimans/cgmd-unpaired-distillation) (confidence: high)
 <!-- END FUNDUS_IMAGING_PAPERS -->
@@ -214,7 +222,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 
 <!-- BEGIN OCT_PAPERS -->
 * **[Evo-RAD: Navigating Rare Retinal Disease Diagnosis via Self-Evolving Agentic Retrieval](https://arxiv.org/abs/2606.22955v1)** - [Code](https://github.com/sdh-lab/evo-rad) (confidence: medium)
-* **[Test-Time Adaptation in Optical Coherence Tomography Using Trajectory-Aligned Time-Independent Flow](https://arxiv.org/abs/2606.18876v1)** - [Code](https://github.com/veit21/tta-flow) (confidence: high)
+* **[Test-Time Adaptation in Optical Coherence Tomography Using Trajectory-Aligned Time-Independent Flow](https://arxiv.org/abs/2606.18876v2)** - [Code](https://github.com/veit21/tta-flow) (confidence: high)
 * **[Propagating Structural Guidance: Synthesizing Fluorescein Angiography from Fundus Images and Sparse OCT Scans](https://arxiv.org/abs/2606.16234v1)** - [Code](https://github.com/while-plus/oct-guide-ffa-syn) (confidence: high)
 <!-- END OCT_PAPERS -->
 
@@ -230,11 +238,12 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
+* **[FunPiQ: A New Benchmark for Pixel-Level Quality Assessment in Fundus Images](https://arxiv.org/abs/2606.25915v1)** - [Code](https://github.com/penway/funpiq) (confidence: high)
 * **[Evo-RAD: Navigating Rare Retinal Disease Diagnosis via Self-Evolving Agentic Retrieval](https://arxiv.org/abs/2606.22955v1)** - [Code](https://github.com/sdh-lab/evo-rad) (confidence: high)
 * **[One-Shot Data Selection for Medical Image Classification via Graph Coverage](https://arxiv.org/abs/2606.22002v1)** - [Code](https://github.com/zahiriddin-rustamov/graph-coverage-selection) (confidence: medium)
 * **[Rethinking the Adaptation of Vision Foundation Models for Efficient Cell Segmentation](https://arxiv.org/abs/2606.21913v1)** - [Code](https://github.com/xq141839/efficell-seg) (confidence: high)
 * **[CSWinUNETR: Segmentation of Thin Anatomical Structures in Medical Images](https://arxiv.org/abs/2606.19824v1)** - [Code](https://github.com/labhai/cswinunetr) (confidence: high)
-* **[Test-Time Adaptation in Optical Coherence Tomography Using Trajectory-Aligned Time-Independent Flow](https://arxiv.org/abs/2606.18876v1)** - [Code](https://github.com/veit21/tta-flow) (confidence: high)
+* **[Test-Time Adaptation in Optical Coherence Tomography Using Trajectory-Aligned Time-Independent Flow](https://arxiv.org/abs/2606.18876v2)** - [Code](https://github.com/veit21/tta-flow) (confidence: high)
 * **[Propagating Structural Guidance: Synthesizing Fluorescein Angiography from Fundus Images and Sparse OCT Scans](https://arxiv.org/abs/2606.16234v1)** - [Code](https://github.com/while-plus/oct-guide-ffa-syn) (confidence: high)
 * **[Mutual Distillation of Dual-Foundation Models for Semi-Supervised PET/CT Segmentation](https://arxiv.org/abs/2606.15611v1)** - [Code](https://github.com/wu-beining/muduo) (confidence: high)
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v3)** - [Code](https://github.com/zhcz328/anaus) (confidence: high)
@@ -248,11 +257,13 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN GENERAL_PAPERS -->
+* **[Re-mixing Embeddings for Patient Augmentation in Data Scarce Multiple Instance Learning](https://arxiv.org/abs/2606.25770v1)** - [Code](https://github.com/marrlab/recipe) (confidence: medium)
 * **[AGE-MIL: Anchor-Guided Evidence Learning for Patient-Level Prediction](https://arxiv.org/abs/2606.12126v1)** - [Code](https://github.com/wodeniua/age-mil) (confidence: medium)
 * **[StrokeTimer: Robust Representation Learning for Ischemic Stroke Onset-Time Estimation from Non-contrast CT](https://arxiv.org/abs/2606.04722v1)** - [Code](https://github.com/brainvas/stroketimer) (confidence: medium)
 * **[BCER Agent: Reliable Long-Horizon MRI Workflow Execution via Compilation, Artifact Binding, and Bounded Local Recovery](https://arxiv.org/abs/2605.29163v1)** - [Code](https://github.com/albertlongzi/bcer) (confidence: medium)
 * **[BioFact-MoE: Biologically Factorized Mixture of Experts for Vision-Language Prognostic Modeling in Hepatocellular Carcinoma](https://arxiv.org/abs/2605.26376v1)** - [Code](https://github.com/jy-639/biofact-moe) (confidence: medium)
 * **[Network-Aware Bilinear Tokenization for Brain Functional Connectivity Representation Learning](https://arxiv.org/abs/2605.14048v3)** - [Code](https://github.com/leomlck/nerve) (confidence: medium)
+* **[UltraStar: Semantic-Aware Star Graph Modeling for Echocardiography Navigation](https://arxiv.org/abs/2603.01461v2)** - [Code](https://github.com/leaplabthu/ultrastar) (confidence: medium)
 * **[Can Agents Distinguish Visually Hard-to-Separate Diseases in a Zero-Shot Setting? A Pilot Study](https://arxiv.org/abs/2602.22959v2)** - [Code](https://github.com/truhnlab/contrastive-agent-reasoning) (confidence: medium)
 <!-- END GENERAL_PAPERS -->
 
@@ -263,6 +274,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-06-24 11:38 北京时间 by GitHub Actions
+**Last Updated**: 2026-06-26 11:55 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
