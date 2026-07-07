@@ -60,20 +60,20 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `70`
-- Fetched arXiv records: `790`
-- Unique arXiv records: `609`
-- Filtered (non-target): `424`
+- Total code-backed papers: `73`
+- Fetched arXiv records: `795`
+- Unique arXiv records: `610`
+- Filtered (non-target): `421`
 - Filtered (track): `27`
-- Filtered (no code links): `88`
+- Filtered (no code links): `89`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
-| Segmentation | 22 | 978 |
-| Reconstruction | 10 | 990 |
-| Classification | 28 | 972 |
-| Image Registration | 13 | 987 |
-| Domain Adaptation | 3 | 997 |
+| Segmentation | 23 | 977 |
+| Reconstruction | 12 | 988 |
+| Classification | 29 | 971 |
+| Image Registration | 14 | 986 |
+| Domain Adaptation | 4 | 996 |
 | Generative Models | 17 | 983 |
 | Fundus Imaging | 6 | 994 |
 | OCT | 3 | 997 |
@@ -87,6 +87,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN SEGMENTATION_PAPERS -->
+* **[Probe-EM: Targeted Neuron Tracing via Training-Free Semantic Verification](https://arxiv.org/abs/2607.04696v1)** - [Code](https://github.com/headliuyun/probe-em) (confidence: medium)
 * **[Self-Supervised Temporal Regularization for Landmark-Based Cardiac Segmentation with Automatic AHA Regional Mapping](https://arxiv.org/abs/2606.31785v1)** - [Code](https://github.com/david-montalvoo/maskhybridgnet-tempreg) (confidence: high)
 * **[Distilling Temporal Coherence into 2D Networks for Transrectal Ultrasound Prostate Video Segmentation](https://arxiv.org/abs/2606.31198v1)** - [Code](https://github.com/dydevelop/dtc-trus) (confidence: high)
 * **[Set-Inclusive Uncertainty Modeling for Robust Brain Tumor Segmentation](https://arxiv.org/abs/2606.30374v1)** - [Code](https://github.com/atlas-sky/sium) (confidence: high)
@@ -116,6 +117,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN RECONSTRUCTION_PAPERS -->
+* **[Probe-EM: Targeted Neuron Tracing via Training-Free Semantic Verification](https://arxiv.org/abs/2607.04696v1)** - [Code](https://github.com/headliuyun/probe-em) (confidence: high)
 * **[Anatomy-Grounded Synthetic Coronary Angiography for Geometry-Informed Multi-View Matching](https://arxiv.org/abs/2606.28474v1)** - [Code](https://github.com/medipixel/gimm) (confidence: medium)
 * **[NeuroSonic: Conditional Flow Matching for EEG-to-Speech Reconstruction](https://arxiv.org/abs/2606.24087v1)** - [Code](https://github.com/y-research-sbu/neurosonic) (confidence: high)
 * **[MaRS: Robust Out-of-Distribution Detection via Mahalanobis Residual Scoring](https://arxiv.org/abs/2606.22649v2)** - [Code](https://github.com/francescodisalvo05/mars) (confidence: medium)
@@ -126,6 +128,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v3)** - [Code](https://github.com/zhcz328/anaus) (confidence: medium)
 * **[Defining Robust Ultrasound Quality Metrics via an Ultrasound Foundation Model](https://arxiv.org/abs/2604.19512v2)** - [Code](https://github.com/sextant-fable/us-metrics) (confidence: medium)
 * **[EchoLVFM: One-Step Video Generation via Latent Flow Matching for Echocardiogram Synthesis](https://arxiv.org/abs/2603.13967v1)** - [Code](https://github.com/engemmanuel/echolvfm) (confidence: medium)
+* **[Diverse Normal Prototypes-Guided Contrastive Reconstruction for Medical Anomaly Detection](https://arxiv.org/abs/2508.19573v2)** - [Code](https://github.com/liluhu0/dnp-conformer) (confidence: high)
 <!-- END RECONSTRUCTION_PAPERS -->
 
 ## 🏷️ Classification
@@ -161,6 +164,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[Exemplar Diffusion: Improving Medical Object Detection with Opportunistic Labels](https://arxiv.org/abs/2603.15267v1)** - [Code](https://github.com/waahlstrand/exemplardiffusion) (confidence: high)
 * **[Evidential Perfusion Physics-Informed Neural Networks with Residual Uncertainty Quantification](https://arxiv.org/abs/2603.09359v2)** - [Code](https://github.com/jhlee0619/eppinn) (confidence: medium)
 * **[Echo2ECG: Enhancing ECG Representations with Cardiac Morphology from Multi-View Echos](https://arxiv.org/abs/2603.08505v2)** - [Code](https://github.com/michelleespranita/echo2ecg) (confidence: medium)
+* **[Diverse Normal Prototypes-Guided Contrastive Reconstruction for Medical Anomaly Detection](https://arxiv.org/abs/2508.19573v2)** - [Code](https://github.com/liluhu0/dnp-conformer) (confidence: high)
 <!-- END CLASSIFICATION_PAPERS -->
 
 ## 🔄 Image Registration
@@ -180,6 +184,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v3)** - [Code](https://github.com/zhcz328/anaus) (confidence: medium)
 * **[Subspace-Guided Semantic and Topological Invariant Registration for Annotation-Free Ultrasound Plane Quality Control](https://arxiv.org/abs/2605.25396v1)** - [Code](https://github.com/zhcz328/striq) (confidence: high)
 * **[EchoTracker2: Enhancing Myocardial Point Tracking by Modeling Local Motion](https://arxiv.org/abs/2605.12140v1)** - [Code](https://github.com/riponazad/ptecho) (confidence: medium)
+* **[Diverse Normal Prototypes-Guided Contrastive Reconstruction for Medical Anomaly Detection](https://arxiv.org/abs/2508.19573v2)** - [Code](https://github.com/liluhu0/dnp-conformer) (confidence: medium)
 * **[Improving Factuality of 3D Brain MRI Report Generation with Paired Image-domain Retrieval and Text-domain Augmentation](https://arxiv.org/abs/2411.15490v3)** - [Code](https://github.com/jhlee0619/pirta) (confidence: medium)
 <!-- END IMAGE_REGISTRATION_PAPERS -->
 
@@ -188,6 +193,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN DOMAIN_ADAPTATION_PAPERS -->
+* **[ContiStain: Cross-Domain Relation-Preserving Distillation for Continual Multi-Domain Virtual IHC Staining](https://arxiv.org/abs/2607.03851v1)** - [Code](https://github.com/ccitachi/contistain) (confidence: high)
 * **[MedTS-TTT: Test-Time Training for Medical Time Series Classification](https://arxiv.org/abs/2606.21329v1)** - [Code](https://github.com/mingzhi-c/medts-ttt) (confidence: medium)
 * **[Evi-Steer: Learning to Steer Biomedical Vision-Language Models through Efficient and Generalizable Evidential Tuning](https://arxiv.org/abs/2605.26292v2)** - [Code](https://github.com/healthx-lab/evi-steer) (confidence: high)
 * **[Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation](https://arxiv.org/abs/2605.25402v3)** - [Code](https://github.com/zhcz328/anaus) (confidence: medium)
@@ -290,6 +296,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-07-06 11:32 北京时间 by GitHub Actions
+**Last Updated**: 2026-07-07 11:23 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
