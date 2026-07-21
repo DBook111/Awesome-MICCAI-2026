@@ -60,17 +60,17 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `79`
-- Fetched arXiv records: `811`
+- Total code-backed papers: `80`
+- Fetched arXiv records: `813`
 - Unique arXiv records: `613`
-- Filtered (non-target): `407`
+- Filtered (non-target): `405`
 - Filtered (track): `30`
-- Filtered (no code links): `97`
+- Filtered (no code links): `98`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
 | Segmentation | 25 | 975 |
-| Reconstruction | 14 | 986 |
+| Reconstruction | 15 | 985 |
 | Classification | 33 | 967 |
 | Image Registration | 17 | 983 |
 | Domain Adaptation | 4 | 996 |
@@ -121,6 +121,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 <!-- BEGIN RECONSTRUCTION_PAPERS -->
 * **[DermDepth: Toward Monocular Metric Scale 3D Reconstruction Models for Dermatology](https://arxiv.org/abs/2607.13010v2)** - [Code](https://github.com/hectorcarrion/dermdepth) (confidence: high)
 * **[Probe-EM: Targeted Neuron Tracing via Training-Free Semantic Verification](https://arxiv.org/abs/2607.04696v1)** - [Code](https://github.com/headliuyun/probe-em) (confidence: high)
+* **[AdaSurvMamba: Dynamic Fusion and Semantic Scanning for Multimodal Survival Analysis](https://arxiv.org/abs/2607.16260v1)** - [Code](https://github.com/zjlgo/adasurvmamba) (confidence: high)
 * **[Anatomy-Grounded Synthetic Coronary Angiography for Geometry-Informed Multi-View Matching](https://arxiv.org/abs/2606.28474v1)** - [Code](https://github.com/medipixel/gimm) (confidence: medium)
 * **[NeuroSonic: Conditional Flow Matching for EEG-to-Speech Reconstruction](https://arxiv.org/abs/2606.24087v1)** - [Code](https://github.com/y-research-sbu/neurosonic) (confidence: high)
 * **[MaRS: Robust Out-of-Distribution Detection via Mahalanobis Residual Scoring](https://arxiv.org/abs/2606.22649v2)** - [Code](https://github.com/francescodisalvo05/mars) (confidence: medium)
@@ -309,6 +310,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-07-20 11:08 北京时间 by GitHub Actions
+**Last Updated**: 2026-07-21 10:43 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
