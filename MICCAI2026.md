@@ -60,25 +60,25 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 - Conference scope: `miccai-2026`
 - Discovery mode: `broad`
 - Tracks: `main`
-- Total code-backed papers: `80`
-- Fetched arXiv records: `813`
+- Total code-backed papers: `81`
+- Fetched arXiv records: `814`
 - Unique arXiv records: `613`
-- Filtered (non-target): `405`
+- Filtered (non-target): `404`
 - Filtered (track): `30`
 - Filtered (no code links): `98`
 
 | Category | Count | Gap to 1000 |
 |---|---:|---:|
-| Segmentation | 25 | 975 |
+| Segmentation | 26 | 974 |
 | Reconstruction | 15 | 985 |
 | Classification | 33 | 967 |
 | Image Registration | 17 | 983 |
 | Domain Adaptation | 4 | 996 |
 | Generative Models | 19 | 981 |
-| Fundus Imaging | 6 | 994 |
-| OCT | 3 | 997 |
+| Fundus Imaging | 7 | 993 |
+| OCT | 4 | 996 |
 | OCTA | 0 | 1000 |
-| Ophthalmic Foundation Models | 13 | 987 |
+| Ophthalmic Foundation Models | 14 | 986 |
 | General | 9 | 991 |
 <!-- END COVERAGE_REPORT -->
 
@@ -87,6 +87,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN SEGMENTATION_PAPERS -->
+* **[PC-Seg: Progressive Cross-View Consistency for 3D OCT Segmentation from Sparse 2D Annotations](https://arxiv.org/abs/2607.17718v2)** - [Code](https://github.com/gsisaoki/pc-seg-official) (confidence: high)
 * **[Controllable Generation of Diverse Dermatological Imagery for Fair and Efficient Malignancy Classification](https://arxiv.org/abs/2607.12987v2)** - [Code](https://github.com/hectorcarrion/controllablegenddi) (confidence: high)
 * **[Decouple and Reason: Anatomically Guided Two-Stage Voxel-Level Grounding of Free-Text Findings in 3D Chest CT](https://arxiv.org/abs/2607.12602v1)** - [Code](https://github.com/khuhm/dagg) (confidence: medium)
 * **[Probe-EM: Targeted Neuron Tracing via Training-Free Semantic Verification](https://arxiv.org/abs/2607.04696v1)** - [Code](https://github.com/headliuyun/probe-em) (confidence: medium)
@@ -242,6 +243,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN FUNDUS_IMAGING_PAPERS -->
+* **[PC-Seg: Progressive Cross-View Consistency for 3D OCT Segmentation from Sparse 2D Annotations](https://arxiv.org/abs/2607.17718v2)** - [Code](https://github.com/gsisaoki/pc-seg-official) (confidence: medium)
 * **[FunPiQ: A New Benchmark for Pixel-Level Quality Assessment in Fundus Images](https://arxiv.org/abs/2606.25915v1)** - [Code](https://github.com/penway/funpiq) (confidence: high)
 * **[Evo-RAD: Navigating Rare Retinal Disease Diagnosis via Self-Evolving Agentic Retrieval](https://arxiv.org/abs/2606.22955v1)** - [Code](https://github.com/sdh-lab/evo-rad) (confidence: high)
 * **[CSWinUNETR: Segmentation of Thin Anatomical Structures in Medical Images](https://arxiv.org/abs/2606.19824v1)** - [Code](https://github.com/labhai/cswinunetr) (confidence: high)
@@ -255,6 +257,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN OCT_PAPERS -->
+* **[PC-Seg: Progressive Cross-View Consistency for 3D OCT Segmentation from Sparse 2D Annotations](https://arxiv.org/abs/2607.17718v2)** - [Code](https://github.com/gsisaoki/pc-seg-official) (confidence: high)
 * **[Evo-RAD: Navigating Rare Retinal Disease Diagnosis via Self-Evolving Agentic Retrieval](https://arxiv.org/abs/2606.22955v1)** - [Code](https://github.com/sdh-lab/evo-rad) (confidence: medium)
 * **[Test-Time Adaptation in Optical Coherence Tomography Using Trajectory-Aligned Time-Independent Flow](https://arxiv.org/abs/2606.18876v2)** - [Code](https://github.com/veit21/tta-flow) (confidence: high)
 * **[Propagating Structural Guidance: Synthesizing Fluorescein Angiography from Fundus Images and Sparse OCT Scans](https://arxiv.org/abs/2606.16234v1)** - [Code](https://github.com/while-plus/oct-guide-ffa-syn) (confidence: high)
@@ -272,6 +275,7 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 *This list is automatically generated. See any issues? Please open a pull request!*
 
 <!-- BEGIN OPHTHALMIC_FOUNDATION_MODELS_PAPERS -->
+* **[PC-Seg: Progressive Cross-View Consistency for 3D OCT Segmentation from Sparse 2D Annotations](https://arxiv.org/abs/2607.17718v2)** - [Code](https://github.com/gsisaoki/pc-seg-official) (confidence: high)
 * **[Foundation Model-driven Key Anatomy Frame Selection for Blind-sweep Ultrasound Fetal Birth Weight Estimation](https://arxiv.org/abs/2607.00745v1)** - [Code](https://github.com/ouleoule/blindsweep-ebw) (confidence: high)
 * **[FunPiQ: A New Benchmark for Pixel-Level Quality Assessment in Fundus Images](https://arxiv.org/abs/2606.25915v1)** - [Code](https://github.com/penway/funpiq) (confidence: high)
 * **[Evo-RAD: Navigating Rare Retinal Disease Diagnosis via Self-Evolving Agentic Retrieval](https://arxiv.org/abs/2606.22955v1)** - [Code](https://github.com/sdh-lab/evo-rad) (confidence: high)
@@ -310,6 +314,6 @@ Contributions are welcome! While this list is automatically maintained by a bot 
 **Conference Scope**: miccai-2026
 **Discovery Mode**: broad
 
-**Last Updated**: 2026-07-21 10:43 北京时间 by GitHub Actions
+**Last Updated**: 2026-07-22 10:47 北京时间 by GitHub Actions
 
 **License**: Apache License 2.0
